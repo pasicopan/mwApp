@@ -1,0 +1,236 @@
+var currentEventId = 21;
+var currentLotteryId = 54;
+var question = [{
+    "date": "2014-08-30",
+    "episodeId": 3,
+    "eptimeEnd": "2014-08-31 00:14:15",
+    "eptimeStart": "2014-08-30 21:44:15",
+    "questionList": []
+}, {
+    "date": "2014-09-06",
+    "episodeId": 5,
+    "eptimeEnd": "2014-09-07 00:07:20",
+    "eptimeStart": "2014-09-06 21:44:15",
+    "questionList": []
+}, {
+    "date": "2014-09-13",
+    "episodeId": 21,
+    "eptimeEnd": "2014-09-14 00:16:20",
+    "eptimeStart": "2014-09-13 21:42:15",
+    "questionList": []
+}, {
+    "date": "2014-09-20",
+    "episodeId": 22,
+    "eptimeEnd": "2014-09-21 00:07:20",
+    "eptimeStart": "2014-09-20 21:44:15",
+    "questionList": []
+}, {
+    "date": "2014-09-15",
+    "episodeId": 31,
+    "eptimeEnd": "2014-09-15 00:14:15",
+    "eptimeStart": "2014-09-15 21:44:15",
+    "questionList": [{
+        "answer": [{
+            "aid": 61,
+            "name": "Apple Watch",
+            "qid": 53
+        }, {
+            "aid": 62,
+            "name": "你没在看它的时候",
+            "qid": 53
+        }, {
+            "aid": 63,
+            "name": "该手表的屏幕会保持黑暗状态。",
+            "qid": 53
+        }, {
+            "aid": 64,
+            "name": "你翻动你的手腕时",
+            "qid": 53
+        }, {
+            "aid": 65,
+            "name": "它的屏幕就会变亮，",
+            "qid": 53
+        }, {
+            "aid": 66,
+            "name": "只在你需要的时候显示信息。",
+            "qid": 53
+        }, {
+            "aid": 67,
+            "name": "有人对这种模式的可行性表示怀疑，",
+            "qid": 53
+        }, {
+            "aid": 68,
+            "name": "但相信只要能够节省电量，",
+            "qid": 53
+        }, {
+            "aid": 69,
+            "name": "人们都会接受。",
+            "qid": 53
+        }],
+        "qId": 53,
+        "right": 2,
+        "seq": 1,
+        "singerId": 0,
+        "timeEnd": "01:25:35",
+        "timeStart": "00:25:10",
+        "title": "问题1",
+        "type": 1
+    }]
+}];
+var singerInfo = [{
+    "episodeId": 1,
+    "id": 1,
+    "intro": "1234567890",
+    "name": "陆仁贾",
+    "url": "http://img.hb.aicdn.com/d676591255bd6d2f3062564005ae87ad2c094695d1dd8-icpz4W_fw658"
+}, {
+    "episodeId": 3,
+    "id": 2,
+    "intro": "台风特别，动感十足，极强的感染力与表演欲；2011年《麦王争霸》冠军；2013音乐先锋榜年度最佳十大金曲（内地）《明日》。",
+    "name": "冯博",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/2.png"
+}, {
+    "episodeId": 5,
+    "id": 10,
+    "intro": "歌曲风格偏R&B，08年曾代表澳门登上央视春晚，与韦唯、陈奕迅、梁咏琪、毛宁等演唱奥运歌曲《同一个梦想》。",
+    "name": "彭永琛",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/10.png"
+}, {
+    "episodeId": 21,
+    "id": 21,
+    "intro": "2014年5月推出第一首个人粤语单曲《密室逃脱》，说唱部分请来广东著名演员康天庥扮演者李俊毅担任；个人音乐作品《123》打入原创酷狗音乐榜。",
+    "name": "罗隽永",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/8.png"
+}, {
+    "episodeId": 22,
+    "id": 29,
+    "intro": "2014年5月推出第一首个人粤语单曲《密室逃脱》，说唱部分请来广东著名演员康天庥扮演者李俊毅担任；个人音乐作品《123》打入原创酷狗音乐榜。",
+    "name": "罗隽永",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/8.png"
+}, {
+    "episodeId": 3,
+    "id": 3,
+    "intro": "表演经验丰富，发挥稳定；2011年《麦王争霸》季军；曾被授予“亚运歌手”称号。",
+    "name": "邓英婷",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/3.png"
+}, {
+    "episodeId": 5,
+    "id": 11,
+    "intro": "甜美活泼，出道2年，发布歌曲《女生外向》《My girl》《我没有》等，多次获得多个新人及金曲奖项。",
+    "name": "晴昕",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/11.png"
+}, {
+    "episodeId": 21,
+    "id": 22,
+    "intro": "自称是“女汉子”唱功扎实，能唱大气的歌曲，外形靓丽，眼神迷离，风格多变，舞台经验丰富。",
+    "name": "王琪飞",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/17.png"
+}, {
+    "episodeId": 3,
+    "id": 4,
+    "intro": "甜美型，可爱风趣有活力，有表演天分；2013第二季度广州新音乐十大金曲《BYEBYE》演唱者。",
+    "name": "梁子媛",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/4.png"
+}, {
+    "episodeId": 5,
+    "id": 12,
+    "intro": "成员为张震宇、郑家樑，开朗善谈，幽默，舞台上善于与观众交流，有活力，曲风可多元化，例如把二重唱融入摇滚。",
+    "name": "Bombeiros",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/12.png"
+}, {
+    "episodeId": 21,
+    "id": 23,
+    "intro": "香港乐队Fabel（寓言）女主音，另一成员名陈庆聪（Jimmy）；新城劲爆颁奖典礼2013“新城劲爆新登场组合”；已发布歌曲《盐花》《风吹草动》（粤，林夕填词）、《庸人自扰》（国）等。",
+    "name": "FABEL",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/5.png"
+}, {
+    "episodeId": 3,
+    "id": 5,
+    "intro": "香港乐队Fabel（寓言）女主音，另一成员名陈庆聪（Jimmy）；新城劲爆颁奖典礼2013“新城劲爆新登场组合”；已发布歌曲《盐花》《风吹草动》（粤，林夕填词）、《庸人自扰》（国）等。",
+    "name": "FABEL",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/5.png"
+}, {
+    "episodeId": 5,
+    "id": 13,
+    "intro": "被誉为“百变神灯”舞台造型百变，擅长音乐剧，个性张扬，造型惊艳，风格多变，极具舞台表现力。",
+    "name": "麦震烁",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/13.png"
+}, {
+    "episodeId": 21,
+    "id": 24,
+    "intro": "被誉为“百变神灯”舞台造型百变，擅长音乐剧，个性张扬，造型惊艳，风格多变，极具舞台表现力。",
+    "name": "麦震烁",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/13.png"
+}, {
+    "episodeId": 3,
+    "id": 6,
+    "intro": "嗜好唱歌跳舞、中国武术、书国画、烹饪；2008年推出唱片《女生不哭》；2009年十大劲歌金曲颁奖典礼：最佳改编歌曲铜奖《千娇百媚》。",
+    "name": "可岚",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/6.png"
+}, {
+    "episodeId": 5,
+    "id": 14,
+    "intro": "目前广东地区唯一兼主持、歌唱、影视、魔术四栖发展的女艺人。曾获得多个奖项，一直以来她以充满智慧的知性美女形象和不断勤奋的努力得到广大观众的喜爱。",
+    "name": "张曼莉",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/14.png"
+}, {
+    "episodeId": 21,
+    "id": 25,
+    "intro": "台风特别，动感十足，极强的感染力与表演欲；2011年《麦王争霸》冠军；2013音乐先锋榜年度最佳十大金曲（内地）《明日》。",
+    "name": "冯博",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/2.png"
+}, {
+    "episodeId": 3,
+    "id": 7,
+    "intro": "形象多变、风格多样；声线独特、有爆发力；2012第2届《麦王争霸》优胜选手及最具网络人气奖。",
+    "name": "劳晓音",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/7.png"
+}, {
+    "episodeId": 5,
+    "id": 15,
+    "intro": "台风稳健，擅长慢歌情歌，性格幽默，反应快，属实力派歌手、主持。比赛经验丰富，多年前就已经开始参加各种歌唱比赛。",
+    "name": "刘俊威",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/15.png"
+}, {
+    "episodeId": 21,
+    "id": 26,
+    "intro": "成员为张震宇、郑家樑，开朗善谈，幽默，舞台上善于与观众交流，有活力，曲风可多元化，例如把二重唱融入摇滚。",
+    "name": "Bombeiros",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/12.png"
+}, {
+    "episodeId": 3,
+    "id": 8,
+    "intro": "2014年5月推出第一首个人粤语单曲《密室逃脱》，说唱部分请来广东著名演员康天庥扮演者李俊毅担任；个人音乐作品《123》打入原创酷狗音乐榜。",
+    "name": "罗隽永",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/8.png"
+}, {
+    "episodeId": 5,
+    "id": 16,
+    "intro": "阳光帅气，唱跳型，舞蹈偏80年代的风格，凭借消声客的公益引起广大网友的关注，引导大众用耳机来跳广场舞。",
+    "name": "何乾梁",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/16.png"
+}, {
+    "episodeId": 21,
+    "id": 27,
+    "intro": "阳光帅气，唱跳型，舞蹈偏80年代的风格，凭借消声客的公益引起广大网友的关注，引导大众用耳机来跳广场舞。",
+    "name": "何乾梁",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/16.png"
+}, {
+    "episodeId": 3,
+    "id": 9,
+    "intro": "高大俊朗，温文尔雅；适合唱慢歌，擅长情歌，模仿谭咏麟、李克勤；2013第三季广州新音乐播放率最高歌曲《只怪我》演唱者。",
+    "name": "邓俊宇",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/9.png"
+}, {
+    "episodeId": 5,
+    "id": 17,
+    "intro": "自称是“女汉子”唱功扎实，能唱大气的歌曲，外形靓丽，眼神迷离，风格多变，舞台经验丰富。",
+    "name": "王琪飞",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/17.png"
+}, {
+    "episodeId": 21,
+    "id": 28,
+    "intro": "形象多变、风格多样；声线独特、有爆发力；2012第2届《麦王争霸》优胜选手及最具网络人气奖。",
+    "name": "劳晓音",
+    "url": "http://1251113199.cdn.myqcloud.com/1251113199/html/images/singer/7.png"
+}];

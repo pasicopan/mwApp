@@ -1,0 +1,11 @@
+/*
+
+
+*/
+.mwwindow_container{color:#fff;width: 100%;height: 100%;background-color:rgba(0,0,0,0.5);opacity: 0;pointer-events:none; -webkit-transition:opacity .5s;}
+.mwwindow_container.show{opacity: 1;pointer-events:auto;}
+.mwwindow_msgBox{width: 80%;position: relative;}
+.mwwindow_msgBox>.mwwindow_msgBox_msg{padding:20px;text-align:center;border-radius: 5px 5px 0 0;background-color:rgba(0,0,0,0.5);}
+.mwwindow_msgBox>.mwwindow_msgBox_closeBtn{border-radius: 27px;width:27px;height:27px;background:rgba(0,0,0,0.5) url(http://1251113199.cdn.myqcloud.com/1251113199/html/images/closeBtn.png) center no-repeat;;position: absolute;right: -10px;top: -10px;-webkit-transform:rotate(0deg); -webkit-transition:-webkit-transform 0.3s;}
+.mwwindow_msgBox.show>.mwwindow_msgBox_closeBtn{-webkit-transform:rotate(45deg);}
+.mwwindow_msgBox>.mwwindow_msgBox_submitBtn{margin-top:5px;padding:10px;text-align:center;border-radius: 0 0 5px 5px;background-color:rgba(0,0,0,0.5);}

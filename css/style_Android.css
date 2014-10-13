@@ -1,0 +1,75 @@
+
+
+
+
+
+
+
+
+.page{ position: absolute; width: 100%; height: 100%; display: none; -webkit-animation:none;}
+.page.show{  z-index:1;display: block; -webkit-animation:none;}
+.page.out{   display: none;-webkit-animation:none;}
+
+
+
+/*预热页面*/
+#page1 .logo{ opacity:0;}
+#page1.show .logo{ opacity:1;}
+#page1.out .logo{ opacity:1;}
+
+
+#page1_top .bottom{ height:50%; -webkit-transform:translate(0,0px); opacity:1; display: none;}
+#page1_top .bottom.show{   -webkit-transform:translate(0,0px); opacity:1;display: block;}
+
+
+
+
+/*竞猜歌词页面*/
+#page2 .top,#page3 .top,#page1 .top{ background: url(http://tuan.pcauto.com.cn/autotest/images/bg2.png) no-repeat bottom; background-size: 100%; height: 55%; position: relative;  overflow: hidden;}
+.answerArea{ position: absolute; width: 100%; height: 100px;}
+.stage1 .answerArea,.stage2 .answerArea{ opacity:0.2; -webkit-transition:opacity 0.3s;}
+.singerImg{  -webkit-transform:translate(0,0px); opacity:1;}
+#page1 .singerImg{ -webkit-transform:translate(0,0px); opacity:1;}
+#page1 .singerName{ opacity: 1;}
+#page2.show .singerImg,#page3.show .singerImg{ -webkit-transform:translate(0,0px); opacity:1;-webkit-transition: -webkit-transform 0.5s 0.5s,opacity 0.5s 0.5s;}
+#page2.out .singerImg,#page3.out .singerImg,{  -webkit-transform:translate(0,0px); opacity:1;}
+.singerName{ position: absolute; width: 50px; height: 22px; background: rgba(255,255,255,0.8); color: #000; line-height: 22px; border-radius: 11px; font-size: 12px;
+	right: 20%; bottom:120px; opacity:0; }
+.singerName[data-id="0"]{right: 10%;}	
+#page2.show .singerName,#page3.show .singerName{opacity:1;-webkit-transition:opacity 0.5s 0.8s; }
+#page2.out .singerName,#page3.out .singerName{opacity:1; }
+#page2 .bottom,#page3 .bottom,#page1 .bottom{ height: 45%; overflow: hidden; position:relative; }
+#page2 .question,#page3 .question{ margin: 12% 0 8%; font-size: 14px; }
+#page2 .answer{ overflow: hidden; height: 100%;font-size: 14px; }
+#page2 .answer>li{-webkit-transition:-webkit-transform 0.5s,opacity 0.5s; opacity:1; -webkit-transform:translate(0,0); height: 35px; width: 80%; margin:0 auto 10px; border-radius: 35px; border:2px solid #fff; line-height: 35px;-webkit-transform:scale(1);-webkit-transition:-webkit-transform 0.3s; }
+#page2 .answer>li.current{ background: #ffdb60;  border:2px solid #ffdb60; color: #8b3100;}
+#page2 .answer>li:nth-child(1).current{ -webkit-transform:translate(0,25px)}
+#page2 .answer>li:nth-child(2).current{ -webkit-transform:translate(0,-25px)}
+#page2 .answer>li.out{ opacity:0;}
+#page2 .answer>li.hover{ -webkit-transform:scale(0.95);}
+.backBtn,.page>.time{ position: absolute; width: 60px; height: 30px; border-radius: 30px;  line-height: 30px; top: 10px;}
+.backBtn{ left: 10px; border: 1px solid #fff;}
+.page>.time{ right: 10px;  background: rgba(0,0,0,0.2); font-family:DBLCDTempBlack; line-height: 34px;}
+.page>.time.hide{ opacity:0; -webkit-transition:opacity 0.3s; }
+.titleStage{ -webkit-transform:rotateY(0deg); opacity:0;  -webkit-transition:none; }
+
+.stage1 .titleStage,.stage2 .titleStage{ -webkit-transform:rotateY(0deg) ;opacity:1;pointer-events:auto;}
+.cutOff{opacity:1;  -webkit-transition:none; }
+.titleStage .text{ padding: 10px; font-size: 16px;}
+
+.titleStage .button{ opacity:0; pointer-events:none; }
+.titleStage .button.show{ -webkit-animation:none; pointer-events:auto; opacity:1;}
+	
+
+
+/*弹窗类*/
+#cover{ background: rgba(0,0,0,0.8); position: absolute; width: 100%; height: 100%; z-index: 1001;/*pointer-events:none; opacity:0;-webkit-transition:opacity 0.3s; */display: none; }
+#cover.show{/*opacity:1; pointer-events:auto;*/ display: block;}
+.box{ position: absolute; width: 280px; left: 0px; top: 0px; bottom:0px; right: 0px; margin: auto; height: 240px; 
+	background: #d82b0c url(http://tuan.pcauto.com.cn/autotest/images/boxBg.jpg) center no-repeat; background-size:100%; border-radius: 10px; opacity:0; pointer-events:none;}  
+.box.show{pointer-events:auto;opacity:1;}	  
+.box .closeBtn{ position: absolute; width: 27px; height: 27px;  border-radius: 100%;  background: #d82b0c url(http://tuan.pcauto.com.cn/autotest/images/closeBtn.png) center no-repeat; 
+	background-size:15px; right: -13px;  top:-13px; -webkit-transform:rotate(135deg); -webkit-transition:-webkit-transform 0.3s; }
+.box.show .closeBtn{-webkit-transform:rotate(135deg);-webkit-transition:-webkit-transform 0.3s 0.3s;  }
+
+

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head  >
+	<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0;">
+    <meta name="format-detection" content="telephone=no" />
+	<meta charset="UTF-8"/>
+	<title>麦王争霸</title>
+	<link rel="stylesheet" href="stylesheets/style.css" />
+    <style type="text/css" >
+    .list_box {
+        display: -moz-box;
+        display: -webkit-box;
+        display: box;
+        width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+     }
+    .list {
+        /*padding: 0 1em;*/
+        font: bold 36px/200px monaco;
+        text-shadow: 1px 1px #eee;
+    }
+    .list_gap {
+        -moz-box-flex: 1;
+        -webkit-box-flex: 1;
+        box-flex: 1;
+        background: #ff1;
+    }
+    .list_content{
+        width:100px;
+        background: #f6f;
+    }
+    </style>
+</head>
+<body >
+
+<div class="list_box">
+    <div class="list list_gap">1</div>
+    <div class="list list_content">3</div>
+    <div class="list list_gap">1</div>
+    <div class="list list_content">3</div>
+    <div class="list list_gap">1</div>
+</div>
+<script src="../javascripts/zepto.min.js" ></script>
+<script>
+    $.ajax({
+            type:'GET',
+            // url:'http://wx.gz.1251113199.clb.myqcloud.com/api/lottery.jsp',
+            url:'http://192.168.19.73/develop/mw/20140915/javascripts/data.js',
+            // data: get_data,
+            // dataType:'jsonp',
+            // timeout: 10000,
+            // context:$('#debug'),
+            success: function(data){
+              console.log('success')
+              console.log('data is:',data)
+
+            },
+            error: function(xhr, type){
+              console.log('error')
+                // window.location="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf8d169d4c6515dab&redirect_uri=http%3A%2F%2Fwx.gz.1251113199.clb.myqcloud.com%2Fapi%2Foauth.jsp&response_type=code&scope=snsapi_base&state=share#wechat_redirect";
+            }
+    })
+</script>
+</body>
+
+</html>

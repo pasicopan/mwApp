@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0;">
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Access-Control-Allow-Origin" content="http://mpevent.yangmengjun.com/">
+	<meta charset="UTF-8" />
+	<title>麦王争霸</title>
+	<link rel="stylesheet" href="stylesheets/style.css" />
+</head>
+<body>
+
+<div id="debug"></div>
+
+    <div id="view">
+        <!--  预热页面 -->
+        <div id="page1" class="page fullpage">
+            <div>
+            <div id="page1_top" class="fullpage">
+                <div class="logo "></div>
+                <div class="countDown ">
+            	    <div><span>00</span>天<span>00</span>时<span>00</span>分<span>00</span>秒</div>
+                </div>
+                <div class="tips centerHor">歌手简介</div>
+            </div>
+            <ul id="singersInfo">
+
+
+</body>
+
+    <script src="javascripts/zepto.min.js" ></script>
+
+        <script src="http://yaotv.qq.com/shake_tv/include/js/jsapi.js" ></script>
+
+    <script>
+
+
+
+// {"answer":[{"aid":69,"correct":0,"qid":53},{"aid":71,"correct":1,"qid":61}],"awards":[],"isShare":0,"lottery":0,"lotteryId":61,"luckyTotal":0,"luckyUse":0,"openId":"ob4BXt--d2eJAtDmFqQSkHxbFAds","serverDate":"2014-09-15 22:17:26","total":53387}
+var data={
+  // openId:"oW1eDt4AwErdqSk-i4btTOPBLRXM",
+  openId:"oW1eDt7y5uhHcf7peoWlkbC9hmDE",
+//openId:"ob4BXt0RQk3LF4GMS3Ts8xGzIEYI",
+//openId:"ob4BXt-2fXAhMVJP2vzaPBlhukXY",
+//openId:"oW1eDtw44AXNgOm65dS-V7T_80wA",
+// lottery:0,
+// luckyTotal:10,
+// luckyUse:0,
+// isShare:0,
+answer:JSON.stringify({title_2_8: 1,title_2_11: 1})
+};
+
+            console.log("post")
+            console.log(data);
+
+$.ajax({
+
+        type:'POST',
+        url:'http://wx.gz.1251113199.clb.myqcloud.com/api/lottery.jsp',
+        // contentType: "application/json",
+
+        dataType:'json',
+        data:data,
+        success: function(data){
+            console.log("post成功")
+            console.log(data);
+        },
+       error: function(xhr, type){
+            alert('Ajax error!')
+         }
+})
+
+
+
+// $.ajax({
+
+//         type:'get',
+//         url:'http://wx.gz.1251113199.clb.myqcloud.com/api/lottery.jsp',
+//         // contentType: "application/json",
+
+//         dataType:'json',
+//         data:data,
+//         success: function(data){
+//             console.log("post成功")
+//             console.log(data);
+//         },
+//        error: function(xhr, type){
+//             alert('Ajax error!')
+//          }
+// })
+
+
+
+
+
+    </script>
+
+</html>

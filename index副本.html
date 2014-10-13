@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head  >
+	<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0;">
+    <meta name="format-detection" content="telephone=no" />
+	<meta charset="UTF-8"/>
+	<title>麦王争霸</title>
+	<link rel="stylesheet" href="stylesheets/style.css" />
+    <style type="text/css" >
+       a[title="站长统计"]{ display: none}
+    </style>
+</head>
+<body >
+    <div id="view">
+        <div id="page1" class="page fullpage">
+            <div>
+            <div id="page1_top" class="fullpage">
+                <div class="logo "></div>
+                <div class="refresh button">哎呀，活动太火爆了，抢麦的人太多！<br />请刷新页面或检查网络。</div>
+                <div class="countDown ">
+            	    <div><span>00</span>天<span>00</span>时<span>00</span>分<span>00</span>秒</div>
+                </div>
+                <div class="bottom">
+                    <div class="time">00:00</div>
+                    <div class="tishi">节目开始，马上打开电视！</br>观看珠江频道，准备答题拿大奖</div>
+                </div>
+                <div class="tips centerHor">向上滑动看歌手简介</div>
+            </div>
+            <ul id="singersInfo">
+
+            </ul>
+            </div>
+            <ul id="scrollFocus">
+                <li class="show"></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+            </ul>
+        </div>
+        <!-- 竞猜歌词 -->
+        <div id="page2" class="page ">
+            <div class="time">00:00</div>
+            <div class="top">
+                <img class="singerImg centerHor"  src=" " />
+                <div class="singerName">罗永庚</div>
+            </div>
+            <div class="bottom">
+                <div class="answerArea">
+                    <div class="question">请问现在演唱的歌曲，最后一句歌词是？</div>
+                    <ul class="answer">
+                        <li class="button"></li>
+                        <li class="button"></li>
+                    </ul>
+                </div>
+                <div class="titleStage" >
+                    <div class="cutOff">
+                          <div class="time"></div>
+                          <p class="text">答题截止，马上揭晓答案<br />快邀请您的小伙伴一起参与吧！ </p>
+                          <div class="button">先去抽奖</div>
+                    </div>
+                </div>
+            </div>
+<!--             <div class="backBtn button">首页</div> -->
+
+        </div>
+        <!-- PK竞猜 -->
+        <div id="page3" class="page">
+                <div class="time">00:00</div>
+            <div class="top">
+
+                <img class="singerImg left"  src=""  />
+                <div class="singerName left">罗永庚</div>
+                <img class="singerImg right"  src=""  />
+                <div class="singerName right">罗永庚</div>
+            </div>
+            <div class="bottom">
+                <div class="answerArea">
+                <ul class="answer">
+                    <li class="button" style="background:#fff no-repeat center -20px; background-size:200px;"></li>
+                    <li class="button" style="background:#fff no-repeat center -20px; background-size:200px;"></li>
+                </ul>
+                <div class="question"></div>
+                </div>
+                <div class="titleStage" >
+                    <div class="cutOff">
+                          <div class="time"></div>
+                          <p class="text">答题截止，马上揭晓答案</p>
+                          <div class="button">先去抽奖</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="backBtn button">首页</div> -->
+
+        </div>
+        <!-- 8选1 -->
+        <div id="page4" class="page">
+                <div class="time">00:00</div>
+            <div class="top">
+            </div>
+            <div class="bottom">
+                <div class="answerArea">
+                <div class="question">你认为今天谁会被淘汰？</div>
+                <div class="answer list_box">
+                    <div class="list list_gap"></div>
+                    <div class="list list_content">
+                        <ul class="">
+                            <li class="button" style=""></li>
+                            <li class="button" style=""></li>
+                            <li class="button" style=""></li>
+                            <li class="button" style=""></li>
+                            <li class="button" style=""></li>
+                            <li class="button" style=""></li>
+                            <li class="button" style=""></li>
+                            <li class="button" style=""></li>
+                        </ul>
+                    </div>
+                    <div class="list list_gap"></div>
+                </div>
+            </div>
+                <div class="titleStage" >
+                    <div class="cutOff">
+                          <div class="time"></div>
+                          <p class="text"></p>
+                          <!-- <div class="button">先去抽奖</div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="backBtn button">首页</div> -->
+
+        </div>
+        <!-- 弹窗 -->
+        <div id="cover" class="button">
+            <!-- 刮刮乐 -->
+            <div id="lucky" class="box button">
+                <div class="closeBtn"></div>
+                <div class="top">你已获得<span class="gglCount">0</span>次抽奖机会，</br>已使用<span class="gglFinish">0</span>次，还有<span class="gglUse strong">0</span>次机会</div>
+                <div id="redPacketWarp" class="button">
+                    <div id="shade"></div>
+                    <div id="redPacket" class="button"><div id="redPacketText">谢谢参与</div></div>
+                </div>
+                <div class="continueBtn button disabled">继续抽奖</div>
+                <div class="recordUserInfo button disabled">填写信息</div>
+            </div>
+            <!-- 提交信息 -->
+            <div id="info" class="box button">
+                <div class="closeBtn"></div>
+                <div class="top">恭喜你中奖了</br>请填写中奖信息</div>
+                <ul id="userInfo">
+                    <li>姓名<input class="name" type="text" placeholder="请输入真实姓名" /></li>
+                    <li>电话<input class="phone" type="number" placeholder="请输入充值手机号码"  /></li>
+                </ul>
+                <div style="margin:10px 0; font-size:12px">请确保充值手机号码无误，否则无法到账！</div>
+                <div class="submit button disabled">提交</div>
+            </div>
+            <!-- 竞猜记录 -->
+            <div id="record" class="box button">
+                <div class="closeBtn"></div>
+                <div id="recordScroll">
+                    <div id="recordScroller">
+                        <div></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- 活动规则 -->
+            <div id="rule" class="box button">
+                <div class="closeBtn"></div>
+                <div class="text">
+                    <h3>活动规则</h3>
+                    <p>1、参加麦王争霸歌词竞猜，每猜对一次歌词，即可获得一次抽奖机会；</p>
+                    <p>2、参加麦王争霸选手竞猜，每猜对一次选手，即可获得一次抽奖机会；</p>
+                    <p>3、邀请好友一起来参与活动吧；</p>
+                    <p>4、获奖后，请在下期节目开始前填写手机号码，以便领奖。</p>
+
+                    <h3>活动时间</h3>
+                    <p>8月30日-11月底</p>
+                </div>
+            </div>
+            <!-- 关注我们 -->
+            <div id="attention" class="box button">
+                <div class="closeBtn"></div>
+                <div class="text">
+                    <h3>获奖名单</h3>
+                    <p>1、在微信首页聊天列表中，点击右上角的“+”号，进入“添加朋友”；</p>
+                    <p>2、在搜索框内，输入“珠江频道”或“GDTVZJPD2013”，进行搜索；</p>
+                    <p>3、在搜索结果中，进入订阅号页面，点击“关注”按钮；</p>
+                    <p>4、活动结束后，将通过订阅号公布名单。</p>
+                </div>
+            </div>
+            <!-- 游戏结束提示 -->
+
+            <div id="gameEnd" class="box button">
+                <div class="gjBtn button">抽奖</div>
+                <div class="shareBtn button">分享</div>
+            </div>
+
+        </div>
+<!-- 一共多少人在玩 -->
+    <div class="sum"><div class="sumpPeople"></div><div class="la">人在参与</div></div>
+<!-- 导航条 -->
+        <div id="nav">
+            <ul>
+                <li class="button" data-b="0">去抽奖<span class="gglUse">0</span></li>
+                <li class="button" data-b="2">竞猜记录</li>
+                <li class="button" data-b="3">活动规则</li>
+                <li class="button" data-b="4">获奖名单</li>
+            </ul>
+        </div>
+    </div>
+
+<!--     <div class="button backBtn">首页</div> -->
+  <div class="alert "></div>
+  <div class="confirmWrap" >
+      <div class="confirm">
+          <p>你确定了吗？</p>
+          <button class="button">取消</button><button class="button">确定</button>
+
+      </div>
+  </div>
+<!--   <div id="loading">
+      <div><span></span></div>
+  </div> -->
+</body>
+    <script src="javascripts/zepto.min.js" ></script>
+    <script src="javascripts/store.min.js" ></script>
+    <script src="javascripts/iscroll.js"></script>
+    <!-- <script src="javascripts/Cmn.js"></script>
+    <script src="javascripts/WechatShare.js"></script>-->
+    <script src="http://yaotv.qq.com/shake_tv/include/js/jsapi.js" ></script>
+    <!--<script src="http://wx.gz.1251113199.clb.myqcloud.com/api/data.jsp"></script>-->
+    <script src="http://s95.cnzz.com/z_stat.php?id=1253124693&web_id=1253124693" language="JavaScript"></script>
+    <script src="javascripts/data.js"></script>
+    <script src="javascripts/main.js"></script>
+
+</html>
