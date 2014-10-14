@@ -86,8 +86,10 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
     // 获取当前时间
     getTime:function(){
       var that = this;
-      var timestamp = new Date().getTime() - that.__relativeTime__;
-      console.log('getTime, that.__relativeTime__ is:',that.__relativeTime__)
+      var d = new Date();
+      var timestamp = d.getTime() - that.__relativeTime__;
+      // console.log('getTime, that.__relativeTime__ is:',that.__relativeTime__)
+      // console.log('getTime is:',d)
       return timestamp;
     },
     // 倒计时
@@ -117,23 +119,40 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
       mwcommunicate.getTasksData(function(a_tasksData){
         var question = a_tasksData.question[0];
         if(debug){
-          var activityStart = new Date()+1;
+          var activityStart = (new Date().getTime())+999995000;
+          var activityEnd = (new Date().getTime())+1000*21//*60;// 1 hour
         }else{
-          var activityStart = question['eptimeStart'];
+          var activityStart = new Date(question['eptimeStart']).getTime();
+          var activityEnd = new Date(question['eptimeEnd']).getTime();
         }
-        console.log('setTasksAction-----')
         var now = that.getTime();
-        if(now< activityStart){
+        var taskControllers = [];
+        if(now < activityStart){
           console.warn('now is:',new Date(now));
           console.warn('activityStart is:',new Date(activityStart));
           console.warn('活动时间外，早了');
-          return false;
+          // if($.isFunction(a_o.callback)) a_o.callback([{activityStart:activityStart}]);
+          // return false;
+          taskControllers.push({
+            activityStart : activityStart,
+            activityEnd : activityEnd,
+            // console.log('that.activityStart is:',that.activityStart)
+            // that.timeStart = that.getAbsoluteTime(a_o.timeStart);
+            // timestampStart : that.getAbsoluteTime(a_o.timeStart),
+            // that.timestampEnd  = a_o.timeEnd;
+            // timestampEnd : that.getAbsoluteTime(a_o.timeEnd),
+            data : {type:1}
+            // console.log('TaskController data is:',a_o)
+            // that.startCallback  = function(){};
+            // that.endCallback  = function(){};
+          })
         }else if(now>question['eptimeEnd']){
           
           console.warn('活动时间外，晚了');
-          return false;
+          // if($.isFunction(a_o.callback)) a_o.callback({activityStart:activityStart});
+          // return false;
         }
-        var taskControllers = [];
+        console.log('setTasksAction-----')
         question.questionList.forEach(function(e){
           var taskController = new TaskController(e,activityStart);
           taskControllers.push(taskController);

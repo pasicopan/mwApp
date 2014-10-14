@@ -8,12 +8,13 @@ html,body,.full{width: 100%;height:100%;}
 
 /* 介绍页 */
 .description{
-	/*background:#420300 url(../img/bg.jpg) no-repeat top;*/
+	background:#420300 url(../img/bg.jpg) no-repeat top;
 	background-size: 100%;
 	width:100%;
 	height:100%;
 	position: relative;
 	overflow: hidden;
+	color: #fff;
 }
 #scroller{
 	position: absolute;
@@ -47,17 +48,21 @@ html,body,.full{width: 100%;height:100%;}
 }
 .singerImg{
 	width: 230px;
+	display: block;
+	margin: 0 auto;
 }
 .detail{
 	color: #fff;
-	height: 45%;
-	position: absolute;
-	bottom: 0;
+	width: 70%;
+	margin: 10% auto;
+	/*height: 45%;*/
+	/*position: absolute;*/
+	/*bottom: 0;*/
 }
 #page1.error .countDown{ display: none;} 
 .countDown{  width: 320px; height: 100px; margin:10% auto 0; line-height: 16px; text-align: center ;color:#fff;}
 .countDown.hide{ display: none  }
-.countDown:before{content:"看直播，玩竞猜赢大奖，敬请期待："; width: 100%; text-align: center; display: block; margin-bottom: 20px;}
+/*.countDown:before{content:"看直播，玩竞猜赢大奖，敬请期待："; width: 100%; text-align: center; display: block; margin-bottom: 20px;}*/
 .countDown span{ display: inline-block; width: 30px; height: 16px; margin:0 7px; padding:7px 0; border-radius: 4px; text-align: center; line-height: 20px;   font-family:DBLCDTempBlack;
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #1b1b1b), color-stop(0.5, #1b1b1b), color-stop(0.51, #111111), color-stop(1, #111111));}
 
@@ -66,4 +71,16 @@ html,body,.full{width: 100%;height:100%;}
 
 .choiceQuestion{width: 80%;margin: 0 auto;color:#fff;}
 .question{text-align:center;padding: 10px;}
-.answer{margin-top: 10px;padding:10px;border-radius: 27px;}
+.choiceQuestion .answer{margin-top: 10px;padding:10px;border-radius: 27px;}
+
+
+.choiceQuestionFrom8{
+	width: 80%;margin: 0 auto;color:#fff;
+	/*height: 200px;*/
+}
+.choiceQuestionFrom8 .answer{
+	float:left;
+	width: 40%;
+	margin: 20px 5%;
+	height: 50px;
+}

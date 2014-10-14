@@ -51,8 +51,8 @@ var question = [{
         "right": 1,
         "seq": 1,
         "singerId": 31,
-        "timeEnd": "00:00:10",
-        "timeStart": "00:00:05",
+        "timeEnd": "05:00:05",
+        "timeStart": "00:00:00",
         "title": "最后一句歌词是什么？",
         "type": 2
     },{
@@ -101,8 +101,8 @@ var question = [{
         "right": 2,
         "seq": 2,
         "singerId": 32,
-        "timeEnd": "00:00:15",
-        "timeStart": "00:00:11",
+        "timeEnd": "01:00:10",
+        "timeStart": "01:00:06",
         "title": "喂喂",
         "type": 2
     },{
@@ -151,10 +151,10 @@ var question = [{
         "right": 2,
         "seq": 2,
         "singerId": 32,
-        "timeEnd": "00:00:20",
-        "timeStart": "00:00:17",
+        "timeEnd": "01:00:15",
+        "timeStart": "01:00:11",
         "title": "ha 什么啊？",
-        "type": 2
+        "type": 3
     }]
 }];
 var singerInfo = [{

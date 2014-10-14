@@ -32,10 +32,11 @@ require(['modules/mwtimeline/mwtimeline.js','modules/mwcommunicate/mwcommunicate
     // console.log('mwtimeline 123 is:',mwtimeline.mwtimeline)
     mwcommunicate.getServerData(function(){
       // return
+
       mwtimeline.mwtimeline.setTasksAction({
         callback:function(a_taskControllers){
           a_taskControllers.forEach(function(a_taskController,a_taskDataIndex){
-        	// console.log('a_taskController is:',a_taskController)
+          // console.log('a_taskController is:',a_taskController)
           // type
           // 1: description
           // 2: choiceQuestion
@@ -44,31 +45,50 @@ require(['modules/mwtimeline/mwtimeline.js','modules/mwcommunicate/mwcommunicate
             var taskType = a_taskController.data.type;
             console.log('taskType is:',taskType)
             switch(taskType){
-
             case 1:
+              console.log('description')
               require(['modules/mwtask/mwDescription.js'],function(mwdescription){
                 
                 // (function(){
-  	              var mwdc = mwdescription.init({
-                    data:a_taskController.data,
-  	                taskController:a_taskController,
-  	              });
-  	              a_taskController.set({
-  	                startCallback:(function(a_mwcq){
-                      return function(){
-                        mwdc.startCallback()
-                      }
-  	                })(mwdc),
-  	                endCallback:function(){mwdc.endCallback()}
-  	              });
-  	           // })()
+                  var mwdc = mwdescription.init({
+                    // data:a_taskController.data,
+                    taskController:a_taskController,
+                  });
+                  // a_taskController.set({
+                  //   startCallback:(function(a_mwcq){
+                  //     return function(){
+                  //       mwdc.startCallback()
+                  //     }
+                  //   })(mwdc),
+                  //   endCallback:function(){mwdc.endCallback()}
+                  // });
+               // })()
               })
               break;
-              case 2:
+            case 2:
               console.log('mwchoiceQuestion')
               require(['modules/mwtask/mwchoiceQuestion.js'],function(mwchoiceQuestion){
                 // (function(){
                   var mwcq = mwchoiceQuestion.init({
+                    data:a_taskController.data,
+                  });
+                  a_taskController.set({
+                    startCallback:(function(a_mwcq){
+                      return function(){
+                        mwcq.startCallback()
+                      }
+                    })(mwcq),
+                    endCallback  :function(){mwcq.endCallback()}
+                  });
+               // })()
+              })
+              break;
+            case 3:
+              console.log('MWChoiceQuestionFrom8');
+             
+              require(['modules/mwtask/mwchoiceQuestionFrom8.js'],function(mwchoiceQuestionFrom8){
+                // (function(){
+                  var mwcq = mwchoiceQuestionFrom8.init({
                     data:a_taskController.data,
                   });
                   a_taskController.set({

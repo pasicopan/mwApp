@@ -1,7 +1,11 @@
 HISTORY  
 -------
 20141014  
-* 介绍页倒计时
+* 介绍页倒计时  
+* ui  
+* post user data to server  
+* nav message  
+* lightbox  
 
 older  
 * 4选1  
