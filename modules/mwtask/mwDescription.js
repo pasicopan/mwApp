@@ -1,8 +1,8 @@
 /*
 mwtimeline.js
  */
-define(['require','exports'],function(require,exports){
-  
+define(['require','exports','modules/mwtimeline/mwtimeline.js'],function(require,exports,mwtimeline){
+  mwtimeline = mwtimeline.mwtimeline;
 
   function init(a_o){
 
@@ -21,10 +21,10 @@ define(['require','exports'],function(require,exports){
     that.$descriptionWrapper = $('<div id="wrapper" class="full">'+
     '<div id="scroller">'+
       '<div class="slide fullScreen">'+
-        '<img class="singerImg" src="img/logo.png">'+
+        // '<img class="singerImg" src="img/logo.png">'+
         '<div class=" ">看直播，玩竞猜赢大奖，敬请期待：</div>'+
         
-        '<div class="countDown ">'+
+        '<div id="countDown" class="countDown ">'+
                   '<div><span>00</span>天<span>00</span>时<span>00</span>分<span>00</span>秒</div>'+
                 '</div>'+
       '</div>'+
@@ -81,10 +81,48 @@ define(['require','exports'],function(require,exports){
       $('#scrollFocus>li:nth-of-type('+(pageIndex+1)+')').addClass('show').siblings().removeClass('show')
       // console.log(Math.abs(this.y)/window.innerHeight)
     })
+    //把秒算成秒分时日
+    function setDurationArry(seconds){
 
-    // that.$description.hide();
-    // that.$question = $('#question');
-    // that.$answer = $('#choiceQuestion>.answer');
+      // if(seconds<0) erreHandle();
+      seconds++;
+      return [Math.floor(seconds/(24*60*60)),  Math.floor(seconds/3600)%24, Math.floor(seconds/60)%60  ,seconds%(60)]
+    }
+    // 2014-10-13 20:22:59
+    function countDownForPageDescription(){
+      // console.log('a_o.data.timeStart is:',a_o.data.timeStart)
+      // console.log('a_o.taskController.activityStart is:',a_o.taskController.activityStart)
+      var partTimeStart = 0;
+      a_o.data.timeStart.split(':').forEach(function(a_num, a_index){
+        // console.log('tipartTimeStartme is:',partTimeStart)
+        partTimeStart += parseInt(a_num)*1000*Math.pow(60,(2-a_index) );
+      })     
+      partTimeStart += new Date(a_o.taskController.activityStart).getTime(); 
+
+      function formatToTwoString(num){
+        if(num<10) num="0"+num;
+        return num
+      }
+
+      console.log('tipartTimeStartme is:',partTimeStart)
+
+      var r = partTimeStart - mwtimeline.getTime();
+      if(r<0){
+        mwtimeline.clearInterval(countDownForPageDescription);
+        return;
+      }
+
+      console.log('r is:',r)
+      var seconds = r/1000;
+      var timeArr = [Math.floor(seconds/(24*60*60)),  Math.floor(seconds/3600)%24, Math.floor(seconds/60)%60  ,Math.floor(seconds%(60))];
+      
+      $('#countDown span').each(function(a_i, a_e){
+        a_e.innerHTML = formatToTwoString(timeArr[a_i]);
+      })
+    }
+    // countDownForPageDescription()
+    mwtimeline.setInterval(countDownForPageDescription)
+
   }
   MWDescription.prototype = {
 

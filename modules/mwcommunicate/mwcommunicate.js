@@ -2,7 +2,8 @@
 mwcommunicate.js
  */
  
-define(['require','exports','modules/mwevent/mwevent.js','modules/mwtimeline/mwtimeline.js'],function(require,exports,mwevent,mwtimeline){
+define(['require','exports','modules/mwtimeline/mwtimeline.js'],function(require,exports,mwtimeline){
+  
   var useID = 'oW1eDt7y5uhHcf7peoWlkbC9hmDE';
   var mwlottery = 'http://www.51viper.com/api/lottery.jsp'+'?id='+useID;
   // var mwdata = 'http://www.51viper.com/api/data.jsp';
@@ -22,12 +23,14 @@ define(['require','exports','modules/mwevent/mwevent.js','modules/mwtimeline/mwt
 	    if (reg.test(location.href)) return decodeURI(RegExp.$2.replace(/\+/g, " "));
 	    return "";
 	},
-    getServerDate:function(a_callback){
-    	$.ajax({
-    		type: 'GET',
-    		url:mwlottery,
-    		dataType: 'jsonp',
-    		success:function(a_serverData){
+    getServerData:function(a_callback){
+      $.ajax({
+        type: 'GET',
+        url:mwlottery,
+        dataType: 'jsonp',
+        success:function(a_serverData){
+        // console.log('mwtimeline abc is:',mwtimeline)
+          mwtimeline.mwtimeline.setRelativeTime(a_serverData.serverDate)
     			a_callback(a_serverData);
 				return;
 	    	}
@@ -135,5 +138,7 @@ define(['require','exports','modules/mwevent/mwevent.js','modules/mwtimeline/mwt
   //     return;
   // });
   // return ;
-  return new MWCommunicate();
+  var m = new MWCommunicate();
+  exports.mwcommunicate = m;
+  return m;
 })

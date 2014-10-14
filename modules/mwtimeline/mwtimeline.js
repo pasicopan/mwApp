@@ -3,10 +3,11 @@ mwtimeline.js
  */
 var debug = true;
 define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mwclock/mwclock.js'],function(require,exports,mwcommunicate,mwclock){
-
+  // console.log('require is:',require)
   function TaskController(a_o,a_activityStart){
     var that = this;
     that.activityStart = a_activityStart;
+    console.log('that.activityStart is:',that.activityStart)
     // that.timeStart = that.getAbsoluteTime(a_o.timeStart);
     that.timestampStart = that.getAbsoluteTime(a_o.timeStart);
     // that.timestampEnd  = a_o.timeEnd;
@@ -44,35 +45,49 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
   }
   MWTimeline.prototype = {
     // 获取服务器时间
-    getServerTime:function(a_callback){
+    // getServerDate:function(a_callback){
+    //   var that = this;
+    //   mwcommunicate.getServerData(function(a_serverData){
+      
+    //     a_callback(a_serverData.serverDate);
+    //   });
+    // },
+    getRelativeTimestamp:function(a_timestamp, a_callback){
       var that = this;
-      mwcommunicate.getServerDate(function(a_serverData){
-        a_callback(a_serverData);
-      });
+      if(that.__relativeTime__){
+        a_callback(that.__relativeTime__ );
+      }else{
+        mwcommunicate.getServerDate(function(a_serverData){
+          var r = (new Date(a_serverData.serverDate).getTime())-(new Date(a_serverData.serverDate).getTime());
+          // if()
+          a_callback(r);
+        });
+      }
     },
     // 计算相对时间，
-    setRelativeTime:function(a_o){
+    setRelativeTime:function(a_serverDate){
+
       var that = this;
       var _relativeTime;
-      that.getServerTime(function(a_data){
-        // console.log('setRelativeTime ,a_data is:',a_data)
-        var localnowstamp = new Date().getTime();
-        var servernowstamp = new Date(a_data.serverDate).getTime();
-        _relativeTime =  localnowstamp - servernowstamp;// - dalayTime
-        // console.log('localnowstamp:', localnowstamp)
-        // console.log('a_data.serverDate is:', servernowstamp);
-        // console.log('_relativeTime is:', _relativeTime)
-        // 取网速误差值较少的值
-        that.__relativeTime__ = that.__relativeTime__?((that.__relativeTime__>_relativeTime?that.__relativeTime__:_relativeTime)):_relativeTime;
-        // that.__relativeTime__ =  new Date().getTime() - a_data.time;
-        // console.log('__relativeTime__ is:', that.__relativeTime__)
-        if($.isFunction(a_o.callback)) a_o.callback(that.__relativeTime__);
-      });
+      console.log('setRelativeTime ,a_serverDate is:',a_serverDate)
+      var localnowstamp = new Date().getTime();
+      var servernowstamp = new Date(a_serverDate).getTime();
+      _relativeTime =  localnowstamp - servernowstamp;// - dalayTime
+      // console.log('localnowstamp:', localnowstamp)
+      // console.log('a_data.serverDate is:', servernowstamp);
+      // console.log('_relativeTime is:', _relativeTime)
+      // 取网速误差值较少的值
+      that.__relativeTime__ = that.__relativeTime__?((that.__relativeTime__>_relativeTime?that.__relativeTime__:_relativeTime)):_relativeTime;
+      // that.__relativeTime__ =  new Date().getTime() - a_data.time;
+      // console.log('__relativeTime__ is:', that.__relativeTime__)
+      // if($.isFunction(a_o.callback)) a_o.callback(that.__relativeTime__);
+      
     },
     // 获取当前时间
     getTime:function(){
       var that = this;
       var timestamp = new Date().getTime() - that.__relativeTime__;
+      console.log('getTime, that.__relativeTime__ is:',that.__relativeTime__)
       return timestamp;
     },
     // 倒计时
@@ -99,18 +114,23 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
     },
     setTasksAction:function(a_o){
       var that = this;
-      that.setRelativeTime({});
       mwcommunicate.getTasksData(function(a_tasksData){
         var question = a_tasksData.question[0];
         if(debug){
-          var activityStart = new Date();
+          var activityStart = new Date()+1;
         }else{
           var activityStart = question['eptimeStart'];
         }
         console.log('setTasksAction-----')
         var now = that.getTime();
-        if(now< activityStart||now>question['eptimeEnd']){
-          console.warn('活动时间外');
+        if(now< activityStart){
+          console.warn('now is:',new Date(now));
+          console.warn('activityStart is:',new Date(activityStart));
+          console.warn('活动时间外，早了');
+          return false;
+        }else if(now>question['eptimeEnd']){
+          
+          console.warn('活动时间外，晚了');
           return false;
         }
         var taskControllers = [];
@@ -191,7 +211,12 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
   //     a_options.a_callback(mwtimeline.getTime());
   //     return;
   // });
-  return new MWTimeline();
+  var m = new MWTimeline();
+  // exports.mwtimeline = function () {
+  //       return m;
+  //   };
+  exports.mwtimeline = m;
+  // return m;
 })
 
 // require(['modules/mwevent/mwevent.js'],function(mwevent){

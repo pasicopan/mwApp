@@ -6,8 +6,9 @@ html,body,.full{width: 100%;height:100%;}
     -webkit-box-orient:vertical;
 }
 
+/* 介绍页 */
 .description{
-	background:#420300 url(../img/bg.jpg) no-repeat top;
+	/*background:#420300 url(../img/bg.jpg) no-repeat top;*/
 	background-size: 100%;
 	width:100%;
 	height:100%;
@@ -53,7 +54,14 @@ html,body,.full{width: 100%;height:100%;}
 	position: absolute;
 	bottom: 0;
 }
+#page1.error .countDown{ display: none;} 
+.countDown{  width: 320px; height: 100px; margin:10% auto 0; line-height: 16px; text-align: center ;color:#fff;}
+.countDown.hide{ display: none  }
+.countDown:before{content:"看直播，玩竞猜赢大奖，敬请期待："; width: 100%; text-align: center; display: block; margin-bottom: 20px;}
+.countDown span{ display: inline-block; width: 30px; height: 16px; margin:0 7px; padding:7px 0; border-radius: 4px; text-align: center; line-height: 20px;   font-family:DBLCDTempBlack;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #1b1b1b), color-stop(0.5, #1b1b1b), color-stop(0.51, #111111), color-stop(1, #111111));}
 
+.singerIntro{ padding: 10% 20px 0; text-align: left; line-height: }
 
 
 .choiceQuestion{width: 80%;margin: 0 auto;color:#fff;}
