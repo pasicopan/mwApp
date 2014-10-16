@@ -5,11 +5,14 @@ html,body,.full{width: 100%;height:100%;}
     -webkit-box-align:center;
     -webkit-box-orient:vertical;
 }
-
+body{
+	/*background:#420300 url(../img/bg.jpg) no-repeat top;*/
+	background-size: 100%;
+	color: #fff;
+}
+.ab{position: absolute;}
 /* 介绍页 */
 .description{
-	background:#420300 url(../img/bg.jpg) no-repeat top;
-	background-size: 100%;
 	width:100%;
 	height:100%;
 	position: relative;
@@ -66,13 +69,64 @@ html,body,.full{width: 100%;height:100%;}
 .countDown span{ display: inline-block; width: 30px; height: 16px; margin:0 7px; padding:7px 0; border-radius: 4px; text-align: center; line-height: 20px;   font-family:DBLCDTempBlack;
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #1b1b1b), color-stop(0.5, #1b1b1b), color-stop(0.51, #111111), color-stop(1, #111111));}
 
+.answerBtn{
+	text-align: center;
+	border-radius: 20px;
+	background: #ffba41;
+	color: #8b3100;
+	padding: 10px;
+}
+/* pk */
+/*left: 20%;
+margin-left: -35px;
+position: absolute;
+
+top: 15px;
+width: 70px;
+height: 70px;
+border-radius: 100%;
+border: 2px solid #fff;
+-webkit-backface-visibility: hidden;
+-webkit-transition: left 0.5s,opacity 0.5s;
+background: url(file:///Users/pasico/Sites/viper/maiwang/maiwang_912/img/8.png) 50% -20px / 200px no-repeat rgb(255, 255, 255);*/
+.pk{
+	display: -webkit-box;
+	width: 100%;
+	height: 300px;
+}
+.pk>.answerContainer{
+	-webkit-box-flex: 1;
+}
+.pk .answer{
+	margin: 20px auto 0 auto;
+	width: 90px;
+	
+}
+.pkSingerImg{
+	width: 140%;
+	margin-left: -20%;
+}
+
+
+
 .singerIntro{ padding: 10% 20px 0; text-align: left; line-height: }
+
+/* 竞猜歌词 */
 
 
 .choiceQuestion{width: 80%;margin: 0 auto;color:#fff;}
 .question{text-align:center;padding: 10px;}
-.choiceQuestion .answer{margin-top: 10px;padding:10px;border-radius: 27px;}
-
+.choiceQuestion .answer{
+	margin-top: 10px;padding:10px;
+	border-radius: 27px;
+	text-align: center;
+	/*border-radius: 20px;*/
+	border:2px solid #fff;
+	color: #fff;
+	padding: 10px;
+	font-size: 14px;
+}
+/* 8选1 */
 
 .choiceQuestionFrom8{
 	width: 80%;margin: 0 auto;color:#fff;
@@ -80,7 +134,12 @@ html,body,.full{width: 100%;height:100%;}
 }
 .choiceQuestionFrom8 .answer{
 	float:left;
-	width: 40%;
-	margin: 20px 5%;
-	height: 50px;
+	width: 38%;
+	margin: 20px 1%  auto 1%;
+
+	/*height: 50px;*/
 }
+
+.singerContainer{position: relative;margin: 0 auto;}
+.singerShadow{position: absolute;bottom: -3px;display: block;margin: 0 auto;width:100%;}
+.singerName{border-radius: 14px;font-size: 12px;background: #000;color: #fff;padding: 2px 5px;line-height: 12px;position: absolute;top: 40%;right: 15%;}

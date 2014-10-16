@@ -122,6 +122,7 @@ define(['require','exports','modules/mwtimeline/mwtimeline.js'],function(require
       var r = a_o.taskController.activityStart - mwtimeline.getTime();
       if(r<0){
         that.$description.hide();
+        console.warn('活动开始')
         mwtimeline.clearInterval(countDownForPageDescription);
         return;
       }

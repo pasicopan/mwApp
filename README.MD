@@ -1,11 +1,17 @@
 HISTORY  
 -------
+20141016  
+* nav message  
+* modify some ui problem
+  
+20141015  
+* lightbox  
+  
 20141014  
 * 介绍页倒计时  
-* ui  
+* pk  
+* layout  
 * post user data to server  
-* nav message  
-* lightbox  
 
 older  
 * 4选1  

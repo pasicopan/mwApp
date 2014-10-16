@@ -3,17 +3,17 @@ var currentLotteryId = 54;
 var question = [{
     "date": "2014-09-15",
     "episodeId": 31,
-    "eptimeEnd": "2014-09-30 18:38:18",
-    "eptimeStart": "2014-09-30 17:18:40",
+    "eptimeEnd": "2014-10-30 18:38:18",
+    "eptimeStart": "2014-10-16 14:22:40",
     "questionList": [{
         "answer": [{
             "aid": 1,
-            "name": "1. Apple Watch",
+            "name": "33",
             "qid": 53,
             "seq": 0
         }, {
             "aid": 2,
-            "name": "2. 你没在看它的时候",
+            "name": "30",
             "qid": 53,
             "seq": 1
         }, {
@@ -50,50 +50,50 @@ var question = [{
         "qId": 53,
         "right": 1,
         "seq": 1,
-        "singerId": 31,
-        "timeEnd": "05:00:05",
+        "singerId": 33,
+        "timeEnd": "00:00:01",
         "timeStart": "00:00:00",
-        "title": "最后一句歌词是什么？",
+        "title": "当前pk，谁能胜出",
         "type": 2
     },{
         "answer": [{
             "aid": 1,
-            "name": "1. a",
+            "name": "罗隽永1",
             "qid": 53,
             "seq": 0
         }, {
             "aid": 2,
-            "name": "2. b",
+            "name": "罗隽永2",
             "qid": 53,
             "seq": 1
         }, {
             "aid": 3,
-            "name": "3. c",
+            "name": "罗隽永3",
             "qid": 53,
             "seq": 2
         }, {
             "aid": 4,
-            "name": "4. d",
+            "name": "罗隽永4",
             "qid": 53,
             "seq": 3
         }, {
             "aid": 5,
-            "name": "5. 它的屏幕就会变亮，",
+            "name": "罗隽永5",
             "qid": 53,
             "seq": 4
         }, {
             "aid": 6,
-            "name": "6. 只在你需要的时候显示信息。",
+            "name": "罗隽永6",
             "qid": 53,
             "seq": 5
         }, {
             "aid": 7,
-            "name": "7. 有人对这种模式的可行性表示怀疑，",
+            "name": "罗隽永7",
             "qid": 53,
             "seq": 6
         }, {
             "aid": 8,
-            "name": "8. 但相信只要能够节省电量。",
+            "name": "罗隽永8",
             "qid": 53,
             "seq": 7
         }],
@@ -101,60 +101,60 @@ var question = [{
         "right": 2,
         "seq": 2,
         "singerId": 32,
-        "timeEnd": "01:00:10",
-        "timeStart": "01:00:06",
-        "title": "喂喂",
-        "type": 2
-    },{
-        "answer": [{
-            "aid": 1,
-            "name": "1. hello1",
-            "qid": 53,
-            "seq": 0
-        }, {
-            "aid": 2,
-            "name": "2. hello2",
-            "qid": 53,
-            "seq": 1
-        }, {
-            "aid": 3,
-            "name": "3. hello3",
-            "qid": 53,
-            "seq": 2
-        }, {
-            "aid": 4,
-            "name": "4. hello4",
-            "qid": 53,
-            "seq": 3
-        }, {
-            "aid": 5,
-            "name": "5. 它的屏幕就会变亮，",
-            "qid": 53,
-            "seq": 4
-        }, {
-            "aid": 6,
-            "name": "6. 只在你需要的时候显示信息。",
-            "qid": 53,
-            "seq": 5
-        }, {
-            "aid": 7,
-            "name": "7. 有人对这种模式的可行性表示怀疑，",
-            "qid": 53,
-            "seq": 6
-        }, {
-            "aid": 8,
-            "name": "8. 但相信只要能够节省电量。",
-            "qid": 53,
-            "seq": 7
-        }],
-        "qId": 54,
-        "right": 2,
-        "seq": 2,
-        "singerId": 32,
-        "timeEnd": "01:00:15",
-        "timeStart": "01:00:11",
-        "title": "ha 什么啊？",
+        "timeEnd": "00:00:03",
+        "timeStart": "00:00:02",
+        "title": "你认为今晚谁会淘汰",
         "type": 3
+    },{
+        "answer": [{
+            "aid": 1,
+            "name": "1. 它的屏幕就会变亮",
+            "qid": 53,
+            "seq": 0
+        }, {
+            "aid": 2,
+            "name": "2. 只在你需要的时候显示信息。",
+            "qid": 53,
+            "seq": 1
+        }, {
+            "aid": 3,
+            "name": "3. 有人对这种模式的可行性表示怀疑，",
+            "qid": 53,
+            "seq": 2
+        }, {
+            "aid": 4,
+            "name": "4. 但相信只要能够节省电量。",
+            "qid": 53,
+            "seq": 3
+        }, {
+            "aid": 5,
+            "name": "5. 它的屏幕就会变亮，",
+            "qid": 53,
+            "seq": 4
+        }, {
+            "aid": 6,
+            "name": "6. 只在你需要的时候显示信息。",
+            "qid": 53,
+            "seq": 5
+        }, {
+            "aid": 7,
+            "name": "7. 有人对这种模式的可行性表示怀疑，",
+            "qid": 53,
+            "seq": 6
+        }, {
+            "aid": 8,
+            "name": "8. 但相信只要能够节省电量。",
+            "qid": 53,
+            "seq": 7
+        }],
+        "qId": 54,
+        "right": 2,
+        "seq": 2,
+        "singerId": 32,
+        "timeEnd": "01:00:30",
+        "timeStart": "00:00:04",
+        "title": "你觉得最后一句歌词是什么？",
+        "type": 2
     }]
 }];
 var singerInfo = [{
@@ -168,7 +168,7 @@ var singerInfo = [{
     "id": 33,
     "intro": "2014年5月推出第一首个人粤语单曲《密室逃脱》，说唱部分请来广东著名演员康天庥扮演者李俊毅担任；个人音乐作品《123》打入原创酷狗音乐榜。",
     "name": "罗隽永",
-    "url": "1"
+    "url": "8"
 }, {
     "episodeId": 31,
     "id": 32,
@@ -189,10 +189,10 @@ var singerInfo = [{
     "url": "3"
 }, {
     "episodeId": 33,
-    "id": 36,
+    "id": 30,
     "intro": "被誉为“百变神灯”舞台造型百变，擅长音乐剧，个性张扬，造型惊艳，风格多变，极具舞台表现力。",
     "name": "麦震烁",
-    "url": "4"
+    "url": "30"
 }, {
     "episodeId": 33,
     "id": 37,

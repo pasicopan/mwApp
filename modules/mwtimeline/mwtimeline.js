@@ -3,7 +3,8 @@ mwtimeline.js
  */
 var debug = true;
 define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mwclock/mwclock.js'],function(require,exports,mwcommunicate,mwclock){
-  // console.log('require is:',require)
+  // var mwcommunicate = mwcommunicate;
+  console.log('mwcommunicate is:',mwcommunicate)
   function TaskController(a_o,a_activityStart){
     var that = this;
     that.activityStart = a_activityStart;
@@ -42,6 +43,7 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
     that.iTime = 1000*60;
     that.intervalCallbacks = [];
     that.refleshServerTime();
+    mwcommunicate.getServerData(function(){});
   }
   MWTimeline.prototype = {
     // 获取服务器时间
@@ -66,7 +68,7 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
     },
     // 计算相对时间，
     setRelativeTime:function(a_serverDate){
-
+      console.log('--setRelativeTime')
       var that = this;
       var _relativeTime;
       console.log('setRelativeTime ,a_serverDate is:',a_serverDate)
@@ -116,11 +118,12 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
     },
     setTasksAction:function(a_o){
       var that = this;
+      console.log('mwcommunicate 2 is:',mwcommunicate)
       mwcommunicate.getTasksData(function(a_tasksData){
         var question = a_tasksData.question[0];
         if(debug){
-          var activityStart = (new Date().getTime())+999995000;
-          var activityEnd = (new Date().getTime())+1000*21//*60;// 1 hour
+          var activityStart = (new Date().getTime())+1000//999995000;
+          var activityEnd = (new Date().getTime())+1000*21*60;// 1 hour
         }else{
           var activityStart = new Date(question['eptimeStart']).getTime();
           var activityEnd = new Date(question['eptimeEnd']).getTime();
@@ -128,23 +131,15 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
         var now = that.getTime();
         var taskControllers = [];
         if(now < activityStart){
-          console.warn('now is:',new Date(now));
-          console.warn('activityStart is:',new Date(activityStart));
+          console.warn('现在时间 is:',new Date(now));
+          console.warn('活动开始时间 is:',new Date(activityStart));
           console.warn('活动时间外，早了');
           // if($.isFunction(a_o.callback)) a_o.callback([{activityStart:activityStart}]);
           // return false;
           taskControllers.push({
             activityStart : activityStart,
             activityEnd : activityEnd,
-            // console.log('that.activityStart is:',that.activityStart)
-            // that.timeStart = that.getAbsoluteTime(a_o.timeStart);
-            // timestampStart : that.getAbsoluteTime(a_o.timeStart),
-            // that.timestampEnd  = a_o.timeEnd;
-            // timestampEnd : that.getAbsoluteTime(a_o.timeEnd),
-            data : {type:1}
-            // console.log('TaskController data is:',a_o)
-            // that.startCallback  = function(){};
-            // that.endCallback  = function(){};
+            data : {type:0}
           })
         }else if(now>question['eptimeEnd']){
           
