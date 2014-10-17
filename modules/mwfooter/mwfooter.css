@@ -2,7 +2,7 @@
 
 
 */
-.mwfooter_container{font-size:14px;position:absolute;bottom:0;color:#fff;width: 100%;height: 40px;background-color:rgba(0,0,0,0.5);opacity: 0;pointer-events:none; -webkit-transition:opacity .5s;}
+.mwfooter_container{z-index:10;font-size:14px;position:absolute;bottom:0;color:#fff;width: 100%;height: 40px;background-color:rgba(0,0,0,0.5);opacity: 0;pointer-events:none; -webkit-transition:opacity .5s;}
 .mwfooter_container.show{opacity: 1;pointer-events:auto;}
 .mwfooter_container_UL{width: 100%;height: 100%;display: -webkit-box;}
 .mwfooter_btnGap{height:20px;width: 0px;border-left: 1px solid #000;border-right: 1px solid #fff;position: relative;}

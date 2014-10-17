@@ -3,7 +3,7 @@ mwfooter.js
  */
 define(['modules/mwcommunicate/mwcommunicate.js','modules/mwwindow/mwwindow.js'],function(mwcommunicate,mwwindow){
   
-  console.log('mwcommunicate is:',mwcommunicate)
+  // console.log('mwcommunicate is:',mwcommunicate)
   // mwcommunicate = mwcommunicate.mwcommunicate;
   var cssURL = 'modules/mwfooter/mwfooter.css';
   var mwfooter = null;
@@ -43,8 +43,9 @@ define(['modules/mwcommunicate/mwcommunicate.js','modules/mwwindow/mwwindow.js']
     
 
     that.$mwfooter_btn1.click(function(){
+      // console.log('mwwindow is:',mwwindow)
       mwcommunicate.getLuckyInfo(function(a_o) {
-        mwwindow.showAlert({
+        mwwindow.showMsg({
           msg:'你还有 '+(a_o.luckyTotal-a_o.luckyUse)+'个红包',
           callback:function(){
 

@@ -4,36 +4,45 @@ mwtimeline.js
 var debug = true;
 define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mwclock/mwclock.js'],function(require,exports,mwcommunicate,mwclock){
   // var mwcommunicate = mwcommunicate;
-  console.log('mwcommunicate is:',mwcommunicate)
+  // console.log('mwcommunicate is:',mwcommunicate)
   function TaskController(a_o,a_activityStart){
     var that = this;
     that.activityStart = a_activityStart;
-    console.log('that.activityStart is:',that.activityStart)
+    // console.log('that.activityStart is:',that.activityStart)
     // that.timeStart = that.getAbsoluteTime(a_o.timeStart);
     that.timestampStart = that.getAbsoluteTime(a_o.timeStart);
     // that.timestampEnd  = a_o.timeEnd;
     that.timestampEnd = that.getAbsoluteTime(a_o.timeEnd);
     that.data = a_o;
-    // console.log('TaskController data is:',a_o)
+    // console.log('TaskController a_o is:',a_o)
     that.startCallback  = function(){};
     that.endCallback  = function(){};
+    that.waitingCallback  = function(){};
 
   }
   TaskController.prototype = {
     getAbsoluteTime:function(a_s){
-      // console.log('getAbsoluteTime, a_s is:',a_s)
       var that = this;
       var rTimestamp = 0;
-      var ts = [60*60*1000,60*1000,1000];
-      a_s.split(':').forEach(function(e,i){
-        rTimestamp += parseInt(e)*ts[i];
-      })
+      // console.log('getAbsoluteTime ,a_s is:',a_s)
+      // console.log('getAbsoluteTime ,a_s.length is:',isNaN(a_s));
+      // 已经是绝对时间
+      if(!isNaN(a_s)){
+        return (new Date(a_s).getTime() + rTimestamp);
+      }else{
+        // console.log('getAbsoluteTime, a_s is:',a_s)
+        var ts = [60*60*1000,60*1000,1000];
+        a_s.split(':').forEach(function(e,i){
+          rTimestamp += parseInt(e)*ts[i];
+        })
+      }
       return (new Date(that.activityStart).getTime() + rTimestamp);
     },
     set:function(a_o){
       var that = this;
       that.startCallback = a_o.startCallback;
       that.endCallback = a_o.endCallback;
+      that.waitingCallback = a_o.waitingCallback;
     }
   }
   function MWTimeline(){
@@ -71,7 +80,7 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
       console.log('--setRelativeTime')
       var that = this;
       var _relativeTime;
-      console.log('setRelativeTime ,a_serverDate is:',a_serverDate)
+      // console.log('setRelativeTime ,a_serverDate is:',a_serverDate)
       var localnowstamp = new Date().getTime();
       var servernowstamp = new Date(a_serverDate).getTime();
       _relativeTime =  localnowstamp - servernowstamp;// - dalayTime
@@ -95,12 +104,23 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
       return timestamp;
     },
     // 倒计时
-    countdown:function(a_o){
-      var _len = a_o.len-1;
-      var _t = that.setInterval(function() {
-        a_o.callback();
-        if(_len--) that.clearInterval(_t);
-      })
+    countDown:function(a_o){
+      var that = this;
+      console.log('timeline countDown')
+      var _t = function() {
+        var r = a_o.timestamp - that.getTime();
+        // console.log(new Date(a_o.timestamp))
+        // console.log(new Date(that.getTime()))
+        if(0>r){
+          that.clearInterval(_t);
+          return;
+        }
+        
+        // console.log('r is:',r)
+        a_o.callback(r);
+        // if(_len--) that.clearInterval(_t);
+      }
+      that.setInterval(_t);
     },
     setTimer:function(a_o){
       // console.log('setTimer--------------')
@@ -110,7 +130,7 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
         // console.log('goal is:',new Date(a_o.timestamp))
         // console.log('--------')
       // console.log('setTimer, a_o.callback is:',a_o.callback)
-        if(that.getTime()>=a_o.timestamp){
+        if(that.getTime()>=a_o.timestamp&&that.getTime()<a_o.timestamp+1000){
           a_o.callback();
           that.clearInterval(_t);
         }
@@ -118,11 +138,11 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
     },
     setTasksAction:function(a_o){
       var that = this;
-      console.log('mwcommunicate 2 is:',mwcommunicate)
+      // console.log('mwcommunicate 2 is:',mwcommunicate)
       mwcommunicate.getTasksData(function(a_tasksData){
         var question = a_tasksData.question[0];
         if(debug){
-          var activityStart = (new Date().getTime())+1000//999995000;
+          var activityStart = (new Date().getTime())+2000//999995000;
           var activityEnd = (new Date().getTime())+1000*21*60;// 1 hour
         }else{
           var activityStart = new Date(question['eptimeStart']).getTime();
@@ -130,25 +150,68 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
         }
         var now = that.getTime();
         var taskControllers = [];
+        console.warn('现在时间 is:',new Date(now));
+        console.warn('活动开始时间 is:',new Date(activityStart));
+        var _timeout = false;
         if(now < activityStart){
-          console.warn('现在时间 is:',new Date(now));
-          console.warn('活动开始时间 is:',new Date(activityStart));
           console.warn('活动时间外，早了');
-          // if($.isFunction(a_o.callback)) a_o.callback([{activityStart:activityStart}]);
-          // return false;
-          taskControllers.push({
-            activityStart : activityStart,
-            activityEnd : activityEnd,
-            data : {type:0}
-          })
-        }else if(now>question['eptimeEnd']){
-          
+          _timeout = true;
+        }else if(now>activityEnd){
           console.warn('活动时间外，晚了');
-          // if($.isFunction(a_o.callback)) a_o.callback({activityStart:activityStart});
-          // return false;
+          _timeout = true;
         }
-        console.log('setTasksAction-----')
-        question.questionList.forEach(function(e){
+
+        // 处理节目外的情况
+        (function(){
+          var _taskController = new TaskController({
+            timeStart:activityStart,
+            timeEnd:activityEnd,
+            type : 0
+          },activityStart);
+          taskControllers.push(_taskController);
+
+
+          that.setTimer({
+            timestamp : _taskController.timestampStart,
+            callback  : function(){
+              _taskController.startCallback();
+              if(taskControllers[1]){
+                // console.log('taskControllers[1] is:',taskControllers[1])
+                _taskController.waitingCallback(taskControllers[1]);
+              }
+              }
+          });
+          that.setTimer({
+            timestamp : _taskController.timestampEnd,
+            callback  : function(){
+              _taskController.endCallback();
+              }
+          });
+
+          if(_timeout){
+            require(['modules/mwtask/mwDescription.js'],function(mwdescription){
+
+              var mwdc = mwdescription.init({
+                // data:a_taskController.data,
+                taskController:_taskController,
+              });
+              _taskController.set({
+                startCallback:function(){
+                    mwdc.startCallback()
+                  },
+                endCallback  :function(){mwdc.endCallback()},
+                waitingCallback  :function(){mwdc.waitingCallback(taskControllers[1])},
+              });
+              _taskController.endCallback();
+
+            })
+          }
+          
+        })();
+
+
+        console.log('【初始化题型】')
+        question.questionList.forEach(function(e,i){
           var taskController = new TaskController(e,activityStart);
           taskControllers.push(taskController);
           
@@ -168,13 +231,28 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
               timestamp : taskController.timestampEnd,
               callback  : function(){
                 taskController.endCallback();
+                // console.log('timeline ,taskControllers[i+1] is:',taskControllers[i+1])
+                // console.log('timeline ,taskControllers[i+1] is:',i+1)
+                taskController.waitingCallback();
                 }
             });
           }
         })
+        // taskController.forEach(function(e,i){
+        //   if(i<taskController.length-1)
+        //   that.setTimer({
+        //     timestamp : e.timestampEnd,
+        //     callback  : function(){
+        //       taskController[i+1].waitingCallback();
+        //       }
+        //   });
+        // });
         if($.isFunction(a_o.callback)) a_o.callback(taskControllers);
         
       })
+    },
+    setTaskLoaded:function(a_f){
+
     },
     setInterval:function(a_f){
       var that = this;
@@ -218,7 +296,17 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
       
       // that.i2 = setInterval(function(){},that.iTime);
     },
-    formatTime:function(){}
+    formatTime:function(s){
+      var seconds = s/1000;
+      var timeArr = [Math.floor(seconds/(24*60*60)),  Math.floor(seconds/3600)%24, Math.floor(seconds/60)%60  ,Math.floor(seconds%(60))];
+      timeArr.forEach(function(e,i){
+        if(e<10){
+          timeArr[i]="0"+e
+        };
+      })
+      
+      return timeArr;
+    }
   }
   // mwevent.addEvent('getTime',function(a_options) {
   //     mwtimeline = mwtimeline || new MWTimeline();

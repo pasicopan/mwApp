@@ -42,71 +42,76 @@ require(['modules/mwtimeline/mwtimeline.js'],function(mwtimeline){
           // 3: choiceQuestionFrom8 8选1
             // var taskType = 1;//a_taskController.taskType
             var taskType = a_taskController.data.type;
-            console.log('taskType is:',taskType)
+            // console.log('taskType is:',taskType)
+            if(0<a_taskDataIndex){
+              console.log('【第'+(a_taskDataIndex)+'题】')
+            }
             switch(taskType){
             case 1:
-              console.log('mwpk');
+            console.log('【pk】')
+              // console.log('mwpk');
              
               require(['modules/mwtask/mwpk.js'],function(mwchoiceQuestionFrom8){
                 // (function(){
                   var mwcq = mwchoiceQuestionFrom8.init({
                     data:a_taskController.data,
+                    taskController:a_taskController,
                   });
                   a_taskController.set({
-                    startCallback:(function(a_mwcq){
-                      return function(){
+                    startCallback:function(){
                         mwcq.startCallback()
-                      }
-                    })(mwcq),
-                    endCallback  :function(){mwcq.endCallback()}
+                      },
+                    endCallback  :function(){mwcq.endCallback()},
+                    waitingCallback  :function(){mwcq.waitingCallback()},
                   });
                // })()
               })
               break;
             case 0:
-              console.log('description')
-              require(['modules/mwtask/mwDescription.js'],function(mwdescription){
+              // console.log('description')
+              // // console.log('description')
+              // require(['modules/mwtask/mwDescription.js'],function(mwdescription){
                 
-                // (function(){
-                  var mwdc = mwdescription.init({
-                    // data:a_taskController.data,
-                    taskController:a_taskController,
-                  });
-              })
+              //   // (function(){
+                  
+
+              // })
               break;
             case 3:
-              console.log('MWChoiceQuestionFrom8');
+              // console.log('MWChoiceQuestionFrom8');
+              console.log('【8选1】')
              
               require(['modules/mwtask/mwchoiceQuestionFrom8.js'],function(mwchoiceQuestionFrom8){
                 // (function(){
                   var mwcq = mwchoiceQuestionFrom8.init({
                     data:a_taskController.data,
+                    taskController:a_taskController,
                   });
                   a_taskController.set({
-                    startCallback:(function(a_mwcq){
-                      return function(){
+                    startCallback:function(){
                         mwcq.startCallback()
-                      }
-                    })(mwcq),
-                    endCallback  :function(){mwcq.endCallback()}
+                      },
+                    endCallback  :function(){mwcq.endCallback()},
+                    waitingCallback  :function(){mwdc.waitingCallback()},
                   });
                // })()
               })
               break;
             case 2:
-              console.log('mwchoiceQuestion')
+              // console.log('mwchoiceQuestion')
+              console.log('【猜歌词】')
                 require(['modules/mwtask/mwchoiceQuestion.js'],function(mwchoiceQuestion){
                     var mwcq = mwchoiceQuestion.init({
                       data:a_taskController.data,
+                      taskController:a_taskController,
                     });
-                  console.log('a_taskController is:',a_taskController)
+                  // console.log('a_taskController is:',a_taskController)
                     a_taskController.set({
-                      startCallback:(function(a_mwcq){
-                        return function(){
+                      startCallback:function(){
                           mwcq.startCallback()
-                        }
-                      })(mwcq),
-                      endCallback  :function(){mwcq.endCallback()}
+                        },
+                      endCallback  :function(){mwcq.endCallback()},
+                    waitingCallback  :function(){mwdc.waitingCallback()},
                     });
                 })
                 break;
@@ -126,4 +131,7 @@ require(['modules/mwtimeline/mwtimeline.js'],function(mwtimeline){
 
 require(['modules/mwfooter/mwfooter.js'],function(mwfooter){
   mwfooter.show();
+})
+require(['modules/mwheader/mwheader.js'],function(mwheader){
+  mwheader.show();
 })

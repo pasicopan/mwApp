@@ -3,8 +3,8 @@ var currentLotteryId = 54;
 var question = [{
     "date": "2014-09-15",
     "episodeId": 31,
-    "eptimeEnd": "2014-10-30 18:38:18",
-    "eptimeStart": "2014-10-16 14:22:40",
+    "eptimeEnd": "2014-10-20 18:30:18",
+    "eptimeStart": "2014-10-17 20:30:40",
     "questionList": [{
         "answer": [{
             "aid": 1,
@@ -51,10 +51,10 @@ var question = [{
         "right": 1,
         "seq": 1,
         "singerId": 33,
-        "timeEnd": "00:00:01",
-        "timeStart": "00:00:00",
+        "timeEnd": "00:10:12",
+        "timeStart": "00:00:06",
         "title": "当前pk，谁能胜出",
-        "type": 2
+        "type": 1
     },{
         "answer": [{
             "aid": 1,
@@ -101,8 +101,8 @@ var question = [{
         "right": 2,
         "seq": 2,
         "singerId": 32,
-        "timeEnd": "00:00:03",
-        "timeStart": "00:00:02",
+        "timeEnd": "01:00:03",
+        "timeStart": "01:00:02",
         "title": "你认为今晚谁会淘汰",
         "type": 3
     },{
@@ -152,7 +152,7 @@ var question = [{
         "seq": 2,
         "singerId": 32,
         "timeEnd": "01:00:30",
-        "timeStart": "00:00:04",
+        "timeStart": "01:00:04",
         "title": "你觉得最后一句歌词是什么？",
         "type": 2
     }]

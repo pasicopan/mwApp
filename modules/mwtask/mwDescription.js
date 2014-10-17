@@ -13,7 +13,8 @@ define(['require','exports','modules/mwtimeline/mwtimeline.js'],function(require
     // load css file
     // append element
     var that = this;
-    // that.data = a_o.data;
+    that.taskController = a_o.taskController;
+    // console.log('a_o is:',a_o)
     
 
     that.$description = $('<div id="description" class="description full center" ></div>');
@@ -23,7 +24,8 @@ define(['require','exports','modules/mwtimeline/mwtimeline.js'],function(require
       '<div class="slide fullScreen center">'+
         '<div class="">'+
           '<img class="singerImg" src="img/logo.png">'+
-          '<div class=" " style="text-align:center;">看直播，玩竞猜赢大奖，敬请期待：</div>'+
+          '<p id="waitingCountDown" class="waitingCountDown" ></p>'+
+          '<div id="descriptionText" class="" style="text-align:center;">看直播，玩竞猜赢大奖，敬请期待：</div>'+
           
           '<div id="countDown" class="countDown ">'+
               '<div><span>00</span>天<span>00</span>时<span>00</span>分<span>00</span>秒</div>'+
@@ -73,97 +75,87 @@ define(['require','exports','modules/mwtimeline/mwtimeline.js'],function(require
     })
 
     // console.log('that.$wrapper is:',$('#wrapper').get(0))
-    var descriptionScroll = new IScroll('#wrapper', {
+    that.descriptionScroll = new IScroll('#wrapper', {
       scrollX: false,
       scrollY: true,
       momentum: false,
       snap: true,
-      snapSpeed: 400,
-      // keyBindings: true,
-      // indicators: {
-      //   el: document.getElementById('indicator'),
-      //   resize: false
-      // }
+      snapSpeed: 400
     });
+    that.$waitingCountDown = $('#waitingCountDown');
+    that.$countDown = $('#countDown');
+    that.$countDownSpan = $('#countDown span');
     that.$description = $('#description');
+    that.$descriptionText = $('#descriptionText');
     that.$wrapper = $('#wrapper');
-    descriptionScroll.on('scrollEnd',function(e){
+    that.descriptionScroll.on('scrollEnd',function(e){
       var pageIndex = Math.abs(this.y)/window.innerHeight;
       $('#scrollFocus>li:nth-of-type('+(pageIndex+1)+')').addClass('show').siblings().removeClass('show')
       // console.log(Math.abs(this.y)/window.innerHeight)
     })
-    //把秒算成秒分时日
-    function setDurationArry(seconds){
 
-      // if(seconds<0) erreHandle();
-      seconds++;
-      return [Math.floor(seconds/(24*60*60)),  Math.floor(seconds/3600)%24, Math.floor(seconds/60)%60  ,seconds%(60)]
-    }
-    // 2014-10-13 20:22:59
-    function countDownForPageDescription(){
-      // console.log('a_o.data.timeStart is:',a_o.data.timeStart)
-      // console.log('a_o.taskController.activityStart is:',a_o.taskController.activityStart)
-      var partTimeStart = 0;
-
-      // a_o.data.timeStart.split(':').forEach(function(a_num, a_index){
-      //   // console.log('tipartTimeStartme is:',partTimeStart)
-      //   partTimeStart += parseInt(a_num)*1000*Math.pow(60,(2-a_index) );
-      // })     
-      // partTimeStart += new Date(a_o.taskController.activityStart).getTime(); 
-
-      function formatToTwoString(num){
-        if(num<10) num="0"+num;
-        return num
-      }
-
-      // console.log('a_o.taskController.activityStart is:',a_o.taskController.activityStart)
-
-      // var r = partTimeStart - mwtimeline.getTime();
-      var r = a_o.taskController.activityStart - mwtimeline.getTime();
-      if(r<0){
-        that.$description.hide();
-        console.warn('活动开始')
-        mwtimeline.clearInterval(countDownForPageDescription);
-        return;
-      }
-
-      console.log('r is:',r)
-      var seconds = r/1000;
-      var timeArr = [Math.floor(seconds/(24*60*60)),  Math.floor(seconds/3600)%24, Math.floor(seconds/60)%60  ,Math.floor(seconds%(60))];
-      
-      $('#countDown span').each(function(a_i, a_e){
-        a_e.innerHTML = formatToTwoString(timeArr[a_i]);
-      })
-    }
-    // countDownForPageDescription()
-    mwtimeline.setInterval(countDownForPageDescription)
-    // alert(a_o.taskController.activityEnd)
-    mwtimeline.setTimer({
-      timestamp:a_o.taskController.activityEnd,
-      callback:function(){
-        // 本期活动结束
-        // alert(0)
-        that.$description.show();
-        // 考虑刷新页码，计算下一期的时间
-      }
-    })
 
   }
   MWDescription.prototype = {
-
+    countDownForPageDescription:function(){
+      var that = this;
+      var partTimeStart = 0;
+      // console.log('countDownForPageDescription')
+      // console.log('MWDescription,that.taskController is:',that.taskController)
+      var r = that.taskController.activityStart - mwtimeline.getTime();
+      if(r<0){
+        
+        return;
+      }
+      // console.log('r is:',r)
+      timeArr = mwtimeline.formatTime(r);    
+      that.$countDownSpan.each(function(a_i, a_e){
+        a_e.innerHTML = timeArr[a_i];
+      })
+    },
     startCallback:function(){
       var that = this;
+      console.warn('活动开始')
       // that.$question.html(that.data.title);
       // that.$answer.each(function(i,e){
       //   $(e).html(that.data.answer[i].name);
       // })
-      that.$description.show();
+      console.log('MWDescription startCallback')
+      // that.$description.show();
+      // that.$description.hide();
+      mwtimeline.clearInterval(that._c);
+      that.$countDown.hide();
       // $('#view').html('MWChoiceQuestion startCallback')
 
     },
+    waitingCallback:function(a_o){
+
+      var that = this;
+      console.log('MWDescription waitingCallback')
+      that.$descriptionText.html('<p>节目开始，马上打开电视！</p><p>观看珠江频道，准备答题拿大奖。</p>');
+      // that._d = function(){
+        mwtimeline.countDown({
+          timestamp:a_o.timestampStart,
+          callback:function(a_t){
+            // console.log('a_t is:',a_t)
+            var arr = mwtimeline.formatTime(a_t);
+            that.$waitingCountDown.html(arr[2]+':'+arr[3]);
+            console.log('a_t is:',a_t)
+            if(1000>=parseInt(a_t)){
+              that.$description.hide();
+            }
+          }
+        });
+        that.descriptionScroll.refresh();
+      // }
+    },
     endCallback:function(){
       var that = this;
-      that.$description.hide();
+      console.log('MWDescription endCallback')
+      that._c = function(){that.countDownForPageDescription();}
+      mwtimeline.setInterval(that._c)
+      that.$description.show();
+      that.$countDown.show();
       // that.$choiceQuestion.hide();
       // alert('endCallback')
       // $('#view').html('MWChoiceQuestion endCallback')

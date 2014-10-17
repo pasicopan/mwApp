@@ -13,6 +13,19 @@ define(['require','exports'],function(require,exports) {
 
     that.__css__ = $('<link rel="stylesheet" href="'+cssURL+'">').appendTo('head');
     that.__container__string = '<div id="mwwindow_container" class="mwwindow_container mwcenter ab" >'+
+                                  '<div id="mwwindow_confirmBox" class="mwwindow_confirmBox">'+
+                                    '<div id="mwwindow_confirmBox_msg" class="mwwindow_confirmBox_msg">'+
+                                    '</div>'+
+
+                                    '<div id="mwwindow_confirmBox_btn" class="mwwindow_confirmBox_btn">'+
+                                      '<div id="mwwindow_confirmBox_submitBtn" class="mwwindow_confirmBox_submitBtn">'+
+                                        '<span>确定</span>'+
+                                      '</div>'+
+                                      '<div id="mwwindow_confirmBox_cancelBtn" class="mwwindow_confirmBox_cancelBtn">'+
+                                        '<span>取消</span>'+
+                                      '</div>'+
+                                    '</div>'+
+                                  '</div>'+
                                   '<div id="mwwindow_msgBox" class="mwwindow_msgBox">'+
                                     '<div id="mwwindow_msgBox_msg" class="mwwindow_msgBox_msg">'+
                                       '<div id="mwwindow_msgBox_scroll" class="mwwindow_msgBox_scroll ab">'+
@@ -28,6 +41,30 @@ define(['require','exports'],function(require,exports) {
                                   '</div>'+
                                 '</div>'
     that.__container__ = $(that.__container__string).appendTo('body');
+    that.$mwwindow_confirmBox = $('#mwwindow_confirmBox');
+    that.$mwwindow_confirmBox_msg = $('#mwwindow_confirmBox_msg');
+    that.$mwwindow_confirmBox_btn = $('#mwwindow_confirmBox_btn');
+    that.$mwwindow_confirmBox_submitBtn = $('#mwwindow_confirmBox_submitBtn');
+    that.$mwwindow_confirmBox_cancelBtn = $('#mwwindow_confirmBox_cancelBtn');
+
+    that.$mwwindow_confirmBox_submitBtn.click(function(){
+      that.hideConfirm();
+      if(that.confirmCallback){
+        console.log('mwwindow_confirmBox_submitBtn')
+        that.confirmCallback(true);
+        that.confirmCallback = null;
+      }
+    });
+    that.$mwwindow_confirmBox_cancelBtn.click(function(){
+      that.hideConfirm();
+        console.log('mwwindow_confirmBox_cancelBtn')
+      if(that.confirmCallback){
+        that.confirmCallback(false);
+        that.confirmCallback = null;
+      }
+    });
+
+
     that.__container__msg = $('#mwwindow_msgBox_msg');
 
     that.mwwindow_msgBox_scroll = new IScroll('#mwwindow_msgBox_scroll', {
@@ -38,7 +75,7 @@ define(['require','exports'],function(require,exports) {
       snapSpeed: 400
     });
 
-    that.$msgBox= $('#mwwindow_msgBox');
+    that.$mwwindow_msgBox= $('#mwwindow_msgBox');
     that.$mwwindow_msgBox_scroller= $('#mwwindow_msgBox_scroller');
     that.$submitBtn= $('#mwwindow_msgBox_submitBtn');
     that.$closeBtn= $('#mwwindow_msgBox_closeBtn');
@@ -54,9 +91,34 @@ define(['require','exports'],function(require,exports) {
     });
   }
   MWWindow.prototype = {
-    showAlert:function(a_options){
+    showConfirm:function(a_options){
       var that = this;
-      that.$msgBox.addClass('show');
+      // that.$msgBox.addClass('show');
+      that.$mwwindow_confirmBox_msg.html(a_options.msg);
+      // that.$mwwindow_confirmBox_submitBtn.html('确定');
+      that.$mwwindow_confirmBox.show();
+      that.$mwwindow_confirmBox_btn.show();
+
+      that.__container__.show();
+      that.__container__.addClass('show');
+      if(a_options.callback){
+        // a_options.callback();
+        that.confirmCallback = a_options.callback;
+      }
+    },
+    hideConfirm:function(){
+      var that = this;
+      that.__container__.removeClass('show');
+      that.__container__.hide();
+
+      that.$mwwindow_confirmBox.hide();
+      that.$mwwindow_confirmBox_btn.hide();
+    },
+    showMsg:function(a_options){
+      var that = this;
+      that.$mwwindow_msgBox.addClass('show');
+      console.log('mwwindow_msgBox is:',that.$mwwindow_msgBox)
+      that.$mwwindow_msgBox.show();
       that.$submitBtn.html(a_options.submit||'确定');
       that.$mwwindow_msgBox_scroller.html(a_options.msg);
       that.mwwindow_msgBox_scroll.refresh();
@@ -71,7 +133,7 @@ define(['require','exports'],function(require,exports) {
     hideAlert:function(){
       // alert(a_options.msg);
       var that = this;
-      that.$msgBox.removeClass('show');
+      that.$mwwindow_msgBox.removeClass('show');
       that.__container__.removeClass('show');
     }
   }

@@ -8,7 +8,8 @@ define(['require','exports','modules/mwtimeline/mwtimeline.js'],function(require
   var debug_openID = 'oW1eDt7y5uhHcf7peoWlkbC9hmDE';
   var mwlotteryURL = 'http://www.51viper.com/api/lottery.jsp';
   // var mwdata = 'http://www.51viper.com/api/data.jsp';
-  var mwdata = 'http://127.0.0.1/~pasico/viper/mwApp/js/data3.js';
+  var mwdata = 'http://192.168.18.91/~pasico/viper/mwApp/js/data3.js';
+  // var mwdata = 'http://127.0.0.1/~pasico/viper/mwApp/js/data3.js';
   var errorRedirectURL = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf8d169d4c6515dab&redirect_uri=http%3A%2F%2Fwww.51viper.com%2Fapi%2Foauth.jsp&response_type=code&scope=snsapi_base&state=share#wechat_redirect'
   var mwcommunicate = null;
 

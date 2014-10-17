@@ -6,7 +6,7 @@ html,body,.full{width: 100%;height:100%;}
     -webkit-box-orient:vertical;
 }
 body{
-	/*background:#420300 url(../img/bg.jpg) no-repeat top;*/
+	background:#420300 url(../img/bg.jpg) no-repeat top;
 	background-size: 100%;
 	color: #fff;
 }
@@ -18,6 +18,14 @@ body{
 	position: relative;
 	overflow: hidden;
 	color: #fff;
+	display: none;
+}
+.waitingCountDown{
+	font-size: 40px;
+	text-align: center;
+	/*padding: 20px 0;*/
+	line-height: 100px;
+	height:100px;
 }
 #scroller{
 	position: absolute;
@@ -76,41 +84,43 @@ body{
 	color: #8b3100;
 	padding: 10px;
 }
-/* pk */
-/*left: 20%;
-margin-left: -35px;
-position: absolute;
 
-top: 15px;
-width: 70px;
-height: 70px;
-border-radius: 100%;
-border: 2px solid #fff;
--webkit-backface-visibility: hidden;
--webkit-transition: left 0.5s,opacity 0.5s;
-background: url(file:///Users/pasico/Sites/viper/maiwang/maiwang_912/img/8.png) 50% -20px / 200px no-repeat rgb(255, 255, 255);*/
+
+
+/* pk */
 .pk{
 	display: -webkit-box;
 	width: 100%;
-	height: 300px;
+	/*height: 300px;*/
 }
+.pkTop{padding: 50px 0 0 0;
+background: url();}
 .pk>.answerContainer{
 	-webkit-box-flex: 1;
 }
+.pktext{font-size: 30px;font-style: italic;}
 .pk .answer{
-	margin: 20px auto 0 auto;
-	width: 90px;
-	
+	margin: 0 auto 0 auto;
+	width: 70px;
+	height: 70px;
+	border-radius: 100%;
+	border: 2px solid #fff;
+	-webkit-backface-visibility: hidden;
+	-webkit-transition: left 0.5s,opacity 0.5s;
+	background: url(file:///Users/pasico/Sites/viper/maiwang/maiwang_912/img/8.png) 50% -20px / 200px no-repeat rgb(255, 255, 255);
 }
+.pkAnswer{padding-top: 30px;}
 .pkSingerImg{
-	width: 140%;
-	margin-left: -20%;
+	width: 100%;
+	/*margin-left: -20%;*/
 }
-
-
+.PKQuestion{margin-top: 50px;}
 
 .singerIntro{ padding: 10% 20px 0; text-align: left; line-height: }
-
+.pkSingerName{padding: 5px;
+	font-size:10px;background: rgba(255,255,255,0.7);color: #000;border-radius: 12px;position: absolute;bottom: 20px;}
+.pkSingerName1{left:2%;}
+.pkSingerName2{right:2%;}
 /* 竞猜歌词 */
 
 
@@ -141,5 +151,5 @@ background: url(file:///Users/pasico/Sites/viper/maiwang/maiwang_912/img/8.png) 
 }
 
 .singerContainer{position: relative;margin: 0 auto;}
-.singerShadow{position: absolute;bottom: -3px;display: block;margin: 0 auto;width:100%;}
+.singerShadow{position: absolute;bottom: 0;display: block;margin: 0 auto;width:100%;}
 .singerName{border-radius: 14px;font-size: 12px;background: #000;color: #fff;padding: 2px 5px;line-height: 12px;position: absolute;top: 40%;right: 15%;}
