@@ -3,9 +3,12 @@ mwcommunicate.js
  */
  
 define(['require','exports','modules/mwtimeline/mwtimeline.js'],function(require,exports,mwtimeline){
-  
+  // console.log('mwcommunicate, mwtimeline is:',mwtimeline)
+  // mwtimeline = mwtimeline.mwtimeline;
+
   // var openID = 'oW1eDt7y5uhHcf7peoWlkbC9hmDE';
-  var debug_openID = 'oW1eDt7y5uhHcf7peoWlkbC9hmDE';
+  var debug_openID = 'ob4BXt--d2eJAtDmFqQSkHxbFAds';
+  // var debug_openID = 'oW1eDt7y5uhHcf7peoWlkbC9hmDE';
   var mwlotteryURL = 'http://www.51viper.com/api/lottery.jsp';
   // var mwdata = 'http://www.51viper.com/api/data.jsp';
   var mwdata = 'http://192.168.18.91/~pasico/viper/mwApp/js/data3.js';
@@ -32,6 +35,25 @@ define(['require','exports','modules/mwtimeline/mwtimeline.js'],function(require
       var o = {
         luckyTotal:a_serverData.luckyTotal,
         luckyUse:a_serverData.luckyUse
+      }
+      callback(o);
+    });
+  },
+  getLotteryResult:function(callback){
+    var that = this;
+    that.postServerData({
+      openId:that.openID,
+      lotteryId:that.currentLotteryId,
+      // luckyTotal:10,
+      // luckyUse:5,
+      isShare:0,
+      lottery:2,
+    },function(a_serverData){
+      console.log('getLotteryResult,a_serverData is:',a_serverData)
+      var o = {
+        awards:a_serverData.awards,
+        luckyUse:a_serverData.luckyUse,
+        lotteryResult:a_serverData.lotteryResult
       }
       callback(o);
     });
@@ -68,14 +90,27 @@ define(['require','exports','modules/mwtimeline/mwtimeline.js'],function(require
       $.ajax({
         type: 'GET',
         url:mwlotteryURL+'?id='+that.openID,
+        // data:a_data,
         dataType: 'jsonp',
         success:function(a_serverData){
-        // console.log('mwtimeline abc is:',mwtimeline)
+        console.log('getServerData mwtimeline is:',mwtimeline)
           mwtimeline.mwtimeline.setRelativeTime(a_serverData.serverDate)
     			a_callback(a_serverData);
 				return;
 	    	}
     	})
+    },
+    postServerData:function(a_data,a_callback){
+      var that = this;
+      $.ajax({
+        type: 'POST',
+        url:mwlotteryURL,
+        data:a_data,
+        success:function(a_serverData){
+          a_callback(a_serverData);
+        return;
+        }
+      })
     },
     getCurrentTask:function(a_callback){
     	$.ajax({
@@ -100,7 +135,7 @@ define(['require','exports','modules/mwtimeline/mwtimeline.js'],function(require
     setTasksData:function(a_o){
       var that = this;
       var o = {};
-      o.lotteryId = 54;
+      o.lotteryId = that.currentLotteryId;
       // o.openId = 'oW1eDt7y5uhHcf7peoWlkbC9hmDE';
       o.openId = that.openID;
       // o.answer = [a_o];
@@ -129,6 +164,7 @@ define(['require','exports','modules/mwtimeline/mwtimeline.js'],function(require
       })
     },
     getTasksData:function(a_callback){
+      var that = this;
       // $.post(mwdata,function(){
       // 	console.log('getTasksData, currentEventId is:',currentEventId)
       // 	a_callback({
@@ -155,8 +191,10 @@ define(['require','exports','modules/mwtimeline/mwtimeline.js'],function(require
        //  })
 		var s = document.createElement('script')
 		s.onload = function(){
-	      	console.log('getTasksData, currentEventId is:',currentEventId);
+	      	// console.log('getTasksData, currentEventId is:',currentEventId);
 	      	// console.log('s.onload is:',a_callback)
+          that.currentEventId = currentEventId;
+          that.currentLotteryId = currentLotteryId;
 			a_callback({
 	      		currentEventId:currentEventId,
 	      		currentLotteryId:currentLotteryId,

@@ -84,14 +84,9 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
       var localnowstamp = new Date().getTime();
       var servernowstamp = new Date(a_serverDate).getTime();
       _relativeTime =  localnowstamp - servernowstamp;// - dalayTime
-      // console.log('localnowstamp:', localnowstamp)
-      // console.log('a_data.serverDate is:', servernowstamp);
-      // console.log('_relativeTime is:', _relativeTime)
       // 取网速误差值较少的值
       that.__relativeTime__ = that.__relativeTime__?((that.__relativeTime__>_relativeTime?that.__relativeTime__:_relativeTime)):_relativeTime;
-      // that.__relativeTime__ =  new Date().getTime() - a_data.time;
-      // console.log('__relativeTime__ is:', that.__relativeTime__)
-      // if($.isFunction(a_o.callback)) a_o.callback(that.__relativeTime__);
+
       
     },
     // 获取当前时间
@@ -113,21 +108,20 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
         // console.log(new Date(that.getTime()))
         if(0>r){
           that.clearInterval(_t);
-          return;
+          // return;
         }
         
         // console.log('r is:',r)
         a_o.callback(r);
         // if(_len--) that.clearInterval(_t);
       }
+      _t(a_o.timestamp - that.getTime());
       that.setInterval(_t);
     },
     setTimer:function(a_o){
       // console.log('setTimer--------------')
       var that = this;
       var _t = that.setInterval(function(){
-        // console.log(' now is:',new Date(that.getTime()))
-        // console.log('goal is:',new Date(a_o.timestamp))
         // console.log('--------')
       // console.log('setTimer, a_o.callback is:',a_o.callback)
         if(that.getTime()>=a_o.timestamp&&that.getTime()<a_o.timestamp+1000){
@@ -230,10 +224,7 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js','modules/mw
             that.setTimer({
               timestamp : taskController.timestampEnd,
               callback  : function(){
-                taskController.endCallback();
-                // console.log('timeline ,taskControllers[i+1] is:',taskControllers[i+1])
-                // console.log('timeline ,taskControllers[i+1] is:',i+1)
-                taskController.waitingCallback();
+                  taskController.endCallback();
                 }
             });
           }

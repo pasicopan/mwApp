@@ -28,7 +28,7 @@ define(['modules/mwcommunicate/mwcommunicate.js','modules/mwwindow/mwwindow.js']
                                     '</li>'+
                                     '<li id="" class="mwfooter_btnGap">'+
                                     '</li>'+
-                                    '<li id="mwfooter_btn3" class="mwfooter_btn mwcenter">'+
+                                    '<li id="mwfooter_btn4" class="mwfooter_btn mwcenter">'+
                                     '<span>获奖名单</span>'+
                                     '</li>'+
                                   '</ul>'+
@@ -48,20 +48,17 @@ define(['modules/mwcommunicate/mwcommunicate.js','modules/mwwindow/mwwindow.js']
         mwwindow.showMsg({
           msg:'你还有 '+(a_o.luckyTotal-a_o.luckyUse)+'个红包',
           callback:function(){
-
           }
         });
       });
-
-      // console.log("that.$mwfooter_btn1 is:",that.$mwfooter_btn1)
-      // that.hide();
     });
-    that.$mwfooter_btn2.click(function(){
-      console.log("that.$mwfooter_btn2 is:",that.$mwfooter_btn2)
-      // console.log("that.$mwfooter_btn1 is:",that.$mwfooter_btn1)
-      // mwevent.trigger('mwalert_show',{msg:'没有抽奖机会了'})
-      // mwevent.addEvent('mwalert_hide',that.show);
-      // that.hide();
+    that.$mwfooter_btn3.click(function(){
+      // console.log('mwwindow is:',mwwindow)
+      mwwindow.showRule();
+    });
+    that.$mwfooter_btn4.click(function(){
+      // console.log('mwwindow is:',mwwindow)
+      mwwindow.showAwardList();
     });
     that.updateLucky();
   }
@@ -69,6 +66,7 @@ define(['modules/mwcommunicate/mwcommunicate.js','modules/mwwindow/mwwindow.js']
     updateLucky:function(){
       var that = this;
       mwcommunicate.getServerData(function(a_serverData){
+        console.log('updateLucky,a_serverData is:',a_serverData)
         var luckyValid = a_serverData.luckyTotal - a_serverData.luckyUse;
         if(0 == luckyValid){
           that.$mwfooter_btn1Pop.hide();

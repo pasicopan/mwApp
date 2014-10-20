@@ -139,11 +139,11 @@ define(['require','exports','modules/mwtimeline/mwtimeline.js'],function(require
           callback:function(a_t){
             // console.log('a_t is:',a_t)
             var arr = mwtimeline.formatTime(a_t);
-            that.$waitingCountDown.html(arr[2]+':'+arr[3]);
             console.log('a_t is:',a_t)
-            if(1000>=parseInt(a_t)){
+            if(0>parseInt(a_t)){
               that.$description.hide();
             }
+            that.$waitingCountDown.html(arr[2]+':'+arr[3]);
           }
         });
         that.descriptionScroll.refresh();

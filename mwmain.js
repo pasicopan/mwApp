@@ -28,7 +28,6 @@ require(['modules/mwtimeline/mwtimeline.js'],function(mwtimeline){
     // console.log('mwcommunicate 123 is:',mwcommunicate)
     // var mwcommunicate = mwcommunicate;
     var mwtimeline = mwtimeline.mwtimeline;
-    // mwcommunicate.getServerData(function(){
       // return
 
       mwtimeline.setTasksAction({
@@ -61,7 +60,13 @@ require(['modules/mwtimeline/mwtimeline.js'],function(mwtimeline){
                     startCallback:function(){
                         mwcq.startCallback()
                       },
-                    endCallback  :function(){mwcq.endCallback()},
+                    endCallback  :function(){
+                      if(a_taskControllers[1+a_taskDataIndex]){
+                        mwcq.endCallback(a_taskControllers[1+a_taskDataIndex]);
+                      }else{
+                        mwcq.endCallback();
+                      }
+                    },
                     waitingCallback  :function(){mwcq.waitingCallback()},
                   });
                // })()

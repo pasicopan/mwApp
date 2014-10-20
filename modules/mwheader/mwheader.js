@@ -2,6 +2,9 @@
 mwheader.js
  */
 define(['modules/mwcommunicate/mwcommunicate.js','modules/mwtimeline/mwtimeline.js','modules/mwwindow/mwwindow.js'],function(mwcommunicate,mwtimeline,mwwindow){
+  
+  console.log('mwheader mwtimeline is:',mwtimeline)
+
   var cssURL = 'modules/mwheader/mwheader.css';
   var mwheader = null;
   function MWHeader(){
@@ -21,7 +24,7 @@ define(['modules/mwcommunicate/mwcommunicate.js','modules/mwtimeline/mwtimeline.
                                     // '<li id="" class="mwheader_btnGap">'+
                                     // '</li>'+
                                     '<li id="mwheader_btn3" class="mwheader_btn mwheader_limitTime mwcenter">'+
-                                      '<span class="headText">答题时间还剩</span><span id="headTime" class="headTime">23:00</span>'+
+                                      '<span class="headText">答题时间还剩</span><span id="headTime" class="headTime"></span>'+
                                     '</li>'+
                                   '</ul>'+
                                 '</div>'
@@ -51,14 +54,25 @@ define(['modules/mwcommunicate/mwcommunicate.js','modules/mwtimeline/mwtimeline.
   MWHeader.prototype = {
     setCountDown:function(a_o){
       var that = this;
-      that.$mwheader_limitTime.addClass('show');
+      // console.log('mwtimeline is:',mwtimeline)
+      // console.log('mwtimeline.countDown is:',mwtimeline.countDown)
+      mwtimeline = mwtimeline.mwtimeline;
       mwtimeline.countDown({
         timestamp:a_o.time,
         callback:function(a_t){
           var arr = mwtimeline.formatTime(a_t);
-          that.$headTime.html(arr[0]+':'+arr[1]);
+          // console.log('MWHeader setCountDown:',arr)
+          that.$mwheader_limitTime.addClass('show');
+          if(0>a_t){
+            return;
+          }
+          that.$headTime.html(arr[2]+':'+arr[3]);
         }
       });
+    },
+    hideCountDown:function(){
+      var that = this;
+      that.$mwheader_limitTime.removeClass('show');
     },
     show:function(){
       var that = this;
