@@ -47,6 +47,7 @@ define(['modules/mwcommunicate/mwcommunicate.js','modules/mwwindow/mwwindow.js']
       mwcommunicate.getLuckyInfo(function(a_o) {
         mwwindow.showMsg({
           msg:'你还有 '+(a_o.luckyTotal-a_o.luckyUse)+'个红包',
+          lottery:true,
           callback:function(){
           }
         });

@@ -46,7 +46,7 @@ require(['modules/mwtimeline/mwtimeline.js'],function(mwtimeline){
               console.log('【第'+(a_taskDataIndex)+'题】')
             }
             switch(taskType){
-            case 1:
+            case 2:
             console.log('【pk】')
               // console.log('mwpk');
              
@@ -96,13 +96,19 @@ require(['modules/mwtimeline/mwtimeline.js'],function(mwtimeline){
                     startCallback:function(){
                         mwcq.startCallback()
                       },
-                    endCallback  :function(){mwcq.endCallback()},
+                    endCallback  :function(){
+                      if(a_taskControllers[1+a_taskDataIndex]){
+                        mwcq.endCallback(a_taskControllers[1+a_taskDataIndex]);
+                      }else{
+                        mwcq.endCallback();
+                      }
+                    },
                     waitingCallback  :function(){mwdc.waitingCallback()},
                   });
                // })()
               })
               break;
-            case 2:
+            case 1:
               // console.log('mwchoiceQuestion')
               console.log('【猜歌词】')
                 require(['modules/mwtask/mwchoiceQuestion.js'],function(mwchoiceQuestion){
@@ -115,7 +121,13 @@ require(['modules/mwtimeline/mwtimeline.js'],function(mwtimeline){
                       startCallback:function(){
                           mwcq.startCallback()
                         },
-                      endCallback  :function(){mwcq.endCallback()},
+                      endCallback  :function(){
+                        if(a_taskControllers[1+a_taskDataIndex]){
+                          mwcq.endCallback(a_taskControllers[1+a_taskDataIndex]);
+                        }else{
+                          mwcq.endCallback();
+                        }
+                      },
                     waitingCallback  :function(){mwdc.waitingCallback()},
                     });
                 })

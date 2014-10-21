@@ -19,6 +19,7 @@
 	background:url(../../img/boxBg.jpg);
 	background-size: 250px 240px;
 	width: 210px;height:200px;
+	border-radius: 15px;
 	
 	/*background-color:rgba(0,0,0,0.5);*/
 }
@@ -46,7 +47,7 @@
 	padding:20px;
 	text-align:center;border-radius: 5px 5px 0 0;
 	background:rgba(0,0,0,0.5);
-	width: 80%;
+	/*width: 80%;*/
 
 }
 .mwwindow_confirmBox_btn{

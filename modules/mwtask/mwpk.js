@@ -47,15 +47,10 @@ define(['modules/mwcommunicate/mwcommunicate.js','modules/mwtimeline/mwtimeline.
           '<p class="resultText center">'+
           '</p>'+
           '<div class="center">'+
-            '<div id="choujiang" class="answerBtn">先去抽奖</div>'+
+            '<div id="choujiang" class="choujiang answerBtn">先去抽奖</div>'+
           '</div>'+
         '</section>'+
-        '<section id="PKWaiting'+g_index+'" class="pk pkWaiting">'+
-          '<p class="pkWaitingTime">'+
-          '</p>'+
-          '<p class="pkWaitingText">'+
-          '</p>'+
-        '</section>'+
+        
         '<div id="PKQuestion'+g_index+'" class="PKQuestion"></div>'+
     '</div>');
     // that.$choiceQuestion = $('#choiceQuestion');
@@ -64,7 +59,7 @@ define(['modules/mwcommunicate/mwcommunicate.js','modules/mwtimeline/mwtimeline.
     that.$PKResult = $('#PKResult'+g_index);
     that.$nextQuestionTime = that.$PKResult.find('.nextQuestionTime');
     that.$resultText = that.$PKResult.find('.resultText');
-    that.$choujiang = that.$PKResult.find('#choujiang');
+    that.$choujiang = that.$PKResult.find('.choujiang');
 
     that.$choujiang.click(function(){
       // alert('抽奖')
@@ -92,7 +87,10 @@ define(['modules/mwcommunicate/mwcommunicate.js','modules/mwtimeline/mwtimeline.
     // console.log('timestampStart is:',a_o.taskController.timestampStart)
     that.$answer.each(function(a_i, a_e){
       $(a_e).click(function(){
-        mwtimeline = mwtimeline.mwtimeline;
+        console.log('pk select:',a_i)
+        if(mwtimeline.mwtimeline){
+          mwtimeline = mwtimeline.mwtimeline;
+        }
         mwwindow.showConfirm({
           msg:'你确定？',
           callback:function(a_b){
@@ -105,18 +103,17 @@ define(['modules/mwcommunicate/mwcommunicate.js','modules/mwtimeline/mwtimeline.
               // that.$PKWaiting.show();
               // that.$pkWaitingText.html('<p>答题结束，马上揭晓答案！</p><p>快要求你的小伙伴一起参与吧！</p>');
 
-              
+              // 保存用户选择
+              that.userSelectedData = {
+                aid:that.data.answer[a_i].aid,
+                qid:that.data.answer[a_i].qid,
+                correct:a_i
+              }
             }
           }
         });
-        that.userSelectedData = {
-          aid:that.data.answer[a_i].aid,
-          qid:that.data.answer[a_i].qid,
-          correct:a_i
-        }
         // 
         // console.log('mwcommunicate:',mwcommunicate)
-        console.log('pk select:',a_i)
       })
     });
   }
@@ -139,8 +136,10 @@ define(['modules/mwcommunicate/mwcommunicate.js','modules/mwtimeline/mwtimeline.
     },
     endCallback:function(a_o){
       var that = this;
-      console.log('pk endCallback,a_o is:',a_o)
-      console.log('mwtimeline is:',mwtimeline)
+
+      var textAfteranswer = '，准备进入下一题！';
+      // console.log('pk endCallback,a_o is:',a_o)
+      // console.log('mwtimeline is:',mwtimeline)
       if(mwtimeline.mwtimeline){
         mwtimeline = mwtimeline.mwtimeline;
       }
@@ -165,16 +164,27 @@ define(['modules/mwcommunicate/mwcommunicate.js','modules/mwtimeline/mwtimeline.
             that.$nextQuestionTime.html(arr[2]+':'+arr[3]);
           }
         });
+      }else{
+        // 已经是最后一题
+        setTimeout(function(){
+          
+            that.$choiceQuestion.hide();
+        }, 1000*60*10)// 十分钟后自动隐藏
+        textAfteranswer = '';
       }
+
+
       // 隐藏header 倒计时
       mwheader.hideCountDown();
       // 显示答案
       that.$PKResult.show();
       mwwindow.hideConfirm();
       if(that.userSelectedData && that.userSelectedData.correct == that.data.right){
-        that.$resultText.html('恭喜你，答对了，准备进入下一题！');
+        that.$resultText.html('恭喜你，答对了'+textAfteranswer);
+      }else if(that.userSelectedData){
+        that.$resultText.html('很遗憾你错过答题时间了'+textAfteranswer);
       }else{
-        that.$resultText.html('很遗憾答错了，准备进入下一题！');
+        that.$resultText.html('很遗憾答错了'+textAfteranswer);
         that.userSelectedData = {
           aid:'',
           qid:that.data.answer[0].qid,

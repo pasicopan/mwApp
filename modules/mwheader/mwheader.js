@@ -56,13 +56,15 @@ define(['modules/mwcommunicate/mwcommunicate.js','modules/mwtimeline/mwtimeline.
       var that = this;
       // console.log('mwtimeline is:',mwtimeline)
       // console.log('mwtimeline.countDown is:',mwtimeline.countDown)
-      mwtimeline = mwtimeline.mwtimeline;
+      if(mwtimeline.mwtimeline){
+        mwtimeline = mwtimeline.mwtimeline;
+      }
+      that.$mwheader_limitTime.addClass('show');
       mwtimeline.countDown({
         timestamp:a_o.time,
         callback:function(a_t){
           var arr = mwtimeline.formatTime(a_t);
           // console.log('MWHeader setCountDown:',arr)
-          that.$mwheader_limitTime.addClass('show');
           if(0>a_t){
             return;
           }

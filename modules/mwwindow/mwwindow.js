@@ -28,7 +28,7 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js'],function(r
                                   '</div>'+
                                   '<div id="mwwindow_msgBox" class="mwwindow_msgBox">'+
                                     '<div id="mwwindow_msgBox_msg" class="mwwindow_msgBox_msg">'+
-                                      '<div id="mwwindow_msgBox_scroll" class="mwwindow_msgBox_scroll ab">'+
+                                      '<div id="mwwindow_msgBox_scroll" class="mwwindow_msgBox_scroll rl">'+
                                         '<div id="mwwindow_msgBox_scroller" class="mwwindow_msgBox_scroller ab">'+
                                         '</div>'+
                                       '</div>'+
@@ -214,6 +214,13 @@ define(['require','exports','modules/mwcommunicate/mwcommunicate.js'],function(r
       that.__container__.addClass('show');
       if(a_options.h){
         that.__container__msg.css('height',a_options.h+'px');
+      }else{
+        that.__container__msg.css('height','200px');
+      }
+      if(a_options.lottery){
+        that.__container__msg.addClass('lottery'); 
+      }else{
+        that.__container__msg.removeClass('lottery'); 
       }
       that.mwwindow_msgBox_scroll.refresh();
       if(a_options.callback){

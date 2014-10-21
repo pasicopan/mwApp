@@ -3,59 +3,9 @@ var currentLotteryId = 54;
 var question = [{
     "date": "2014-10-18",
     "episodeId": 31,
-    "eptimeEnd": "2014-10-21 18:30:18",
-    "eptimeStart": "2014-10-19 12:10:20",
+    "eptimeEnd": "2014-10-23 18:30:18",
+    "eptimeStart": "2014-10-21 17:55:20",
     "questionList": [{
-        "answer": [{
-            "aid": 1,
-            "name": "33",
-            "qid": 53,
-            "seq": 0
-        }, {
-            "aid": 2,
-            "name": "30",
-            "qid": 53,
-            "seq": 1
-        }, {
-            "aid": 3,
-            "name": "3. 该手表的屏幕会保持黑暗状态。",
-            "qid": 53,
-            "seq": 2
-        }, {
-            "aid": 4,
-            "name": "4. 你翻动你的手腕时",
-            "qid": 53,
-            "seq": 3
-        }, {
-            "aid": 5,
-            "name": "5. 它的屏幕就会变亮，",
-            "qid": 53,
-            "seq": 4
-        }, {
-            "aid": 6,
-            "name": "6. 只在你需要的时候显示信息。",
-            "qid": 53,
-            "seq": 5
-        }, {
-            "aid": 7,
-            "name": "7. 有人对这种模式的可行性表示怀疑，",
-            "qid": 53,
-            "seq": 6
-        }, {
-            "aid": 8,
-            "name": "8. 但相信只要能够节省电量。",
-            "qid": 53,
-            "seq": 7
-        }],
-        "qId": 53,
-        "right": 1,
-        "seq": 1,
-        "singerId": 33,
-        "timeEnd": "00:00:12",
-        "timeStart": "00:00:06",
-        "title": "当前pk，谁能胜出",
-        "type": 1
-    },{
         "answer": [{
             "aid": 1,
             "name": "罗隽永1",
@@ -101,60 +51,10 @@ var question = [{
         "right": 2,
         "seq": 2,
         "singerId": 32,
-        "timeEnd": "00:01:53",
-        "timeStart": "00:01:20",
+        "timeEnd": "00:00:13",
+        "timeStart": "00:00:02",
         "title": "你认为今晚谁会淘汰",
         "type": 3
-    },{
-        "answer": [{
-            "aid": 1,
-            "name": "1. 它的屏幕就会变亮",
-            "qid": 53,
-            "seq": 0
-        }, {
-            "aid": 2,
-            "name": "2. 只在你需要的时候显示信息。",
-            "qid": 53,
-            "seq": 1
-        }, {
-            "aid": 3,
-            "name": "3. 有人对这种模式的可行性表示怀疑，",
-            "qid": 53,
-            "seq": 2
-        }, {
-            "aid": 4,
-            "name": "4. 但相信只要能够节省电量。",
-            "qid": 53,
-            "seq": 3
-        }, {
-            "aid": 5,
-            "name": "5. 它的屏幕就会变亮，",
-            "qid": 53,
-            "seq": 4
-        }, {
-            "aid": 6,
-            "name": "6. 只在你需要的时候显示信息。",
-            "qid": 53,
-            "seq": 5
-        }, {
-            "aid": 7,
-            "name": "7. 有人对这种模式的可行性表示怀疑，",
-            "qid": 53,
-            "seq": 6
-        }, {
-            "aid": 8,
-            "name": "8. 但相信只要能够节省电量。",
-            "qid": 53,
-            "seq": 7
-        }],
-        "qId": 54,
-        "right": 2,
-        "seq": 2,
-        "singerId": 32,
-        "timeEnd": "01:00:30",
-        "timeStart": "01:00:25",
-        "title": "你觉得最后一句歌词是什么？",
-        "type": 2
     }]
 }];
 var singerInfo = [{

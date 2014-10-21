@@ -7,12 +7,14 @@ html,body,.full{width: 100%;height:100%;}
 }
 body{
 	background:#420300 url(../img/bg.jpg) no-repeat top;
+	/*background: #ddd;*/
 	background-size: 100%;
 	color: #fff;
 }
 .ab{position: absolute;}
 .rl{position: relative;}
 .tc{text-align: center;}
+.noevent{pointer-events:none;}
 
 
 /* 介绍页 */
@@ -137,7 +139,6 @@ background: url();}
 .pkSingerName1{left:2%;}
 .pkSingerName2{right:2%;}
 
-.pkWaiting{display: none;}
 
 
 .pkResult{display: none;}
@@ -148,6 +149,7 @@ background: url();}
 
 
 .choiceQuestion{width: 80%;margin: 0 auto;color:#fff;}
+.choiceQuestion.selected{pointer-events:none;}
 .question{text-align:center;padding: 10px;}
 .choiceQuestion .answer{
 	margin-top: 10px;padding:10px;
@@ -159,11 +161,29 @@ background: url();}
 	padding: 10px;
 	font-size: 14px;
 }
+.choiceQuestion .answer.selected{
+	background: #ffba41;
+}
+.choiceQuestionWaiting{background: rgba(66,3,0,0.8);height: 140px;width: 100%;}
+.choiceQuestionWaiting p{padding: 5px 0;}
+.choiceQuestionWaitingTime{font-size: 30px;}
+.choiceQuestionWaiting.show{-webkit-transform: translate(0,-15px);}
+.choiceQuestionResult{background: rgba(66,3,0,0.8);height: 140px;width: 100%;}
+.choiceQuestionResult.show{-webkit-transform: translate(0,-15px);}
+
+.choiceQuestionResult{display: none;}
+.choiceQuestionWaiting{display: none;}
+
+
 /* 8选1 */
 
 .choiceQuestionFrom8{
 	width: 80%;margin: 0 auto;color:#fff;
 	/*height: 200px;*/
+}
+.choiceQuestionFrom8 .answer.selected{
+	background: #8b3100;
+	color: #fff;
 }
 .choiceQuestionFrom8 .answer{
 	float:left;
@@ -172,6 +192,13 @@ background: url();}
 
 	/*height: 50px;*/
 }
+.choiceQuestionFrom8.selected{pointer-events:none;}
+
+.choiceQuestionFrom8Waiting,.choiceQuestionFrom8Result{background: rgba(66,3,0,0.8);height: ;width: 100%;}
+.choiceQuestionFrom8Waiting p,.choiceQuestionFrom8Result p{padding: 5px 0;}
+/*.choiceQuestionFrom8Waiting.show,.choiceQuestionFrom8Result.show{-webkit-transform: translate(0,-120px);}*/
+.choiceQuestionFrom8Result{display: none;}
+.choiceQuestionFrom8Waiting{display: none;}
 
 .singerContainer{position: relative;margin: 0 auto;}
 .singerShadow{position: absolute;bottom: 0;display: block;margin: 0 auto;width:100%;}

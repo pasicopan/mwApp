@@ -13,7 +13,7 @@
     box-flex: 1;}
 .tipsText{clear: both;font-size: 10px;padding-left: 30px;}
 .headText{font-size: 10px;padding-left: 30px;}
-.mwheader_btn .headTime{border-radius: 14px;background: rgba(0,0,0,0.5);padding: 8px;font-size: 16px;}
+.mwheader_btn .headTime{border-radius: 14px;background: rgba(0,0,0,0.5);padding: 8px 8px 5px 8px;font-size: 16px;}
 .mwheader_limitTime{visibility: hidden;}
 .mwheader_limitTime.show{visibility: visible;}
 /* 人数动画 */
